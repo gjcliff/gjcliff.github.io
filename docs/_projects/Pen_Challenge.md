@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Projects"
-permalink: /projects
+permalink: /projects/pen_challenge
 ---
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
