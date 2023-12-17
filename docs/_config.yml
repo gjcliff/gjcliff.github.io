@@ -21,9 +21,8 @@
 title: Graham Clifford
 email: gjcliff@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  I'm a Master of Science in Robotics student at Northwestern University
+  interested in robotic manipulation, machine learning, and robot.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: n/a
@@ -31,10 +30,29 @@ github_username:  gjcliff
 
 # Build settings
 #theme: jekyll-theme-midnight
-remote_theme: pages-themes/midnight@v0.2.0
+remote_theme: vszhub/not-pure-poole
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+cover_image: /bg.jpeg
+paginate: 5
+permalink: pretty
+avatar: /me_square.png
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Specify the author for blog posts
+author:
+  name: Graham Clifford
+  url: https://github.com/gjcliff/
+  email: gjcliff@gmail.com
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -44,14 +62,9 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .git
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
