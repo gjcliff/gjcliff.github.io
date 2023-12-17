@@ -21,8 +21,7 @@
 title: Graham Clifford
 email: gjcliff@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  I'm a Master of Science in Robotics student at Northwestern University
-  interested in robotic manipulation, machine learning, and robot.
+  Master of Science in Robotics student at Northwestern University
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: n/a
@@ -39,10 +38,13 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-cover_image: /bg.jpeg
+cover_image: /shirley_daytime.JPG
 paginate: 5
 permalink: pretty
 avatar: /me_square.png
+
+cover_bg_color: rgb(40, 40, 77)
+cover_color: rgb(255, 255, 255)
 
 sass:
   sass_dir: _sass
