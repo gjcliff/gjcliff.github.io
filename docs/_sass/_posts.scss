@@ -6,6 +6,8 @@
 .post-entry {
   border-bottom: 1px solid var(--border-color);
   margin-bottom: var(--spacer-3);
+  display: flex; /* Use flexbox to create a horizontal layout */
+  align-items: center;
 }
 
 .page,
@@ -39,6 +41,20 @@
   &:focus {
     text-decoration: underline;
   }
+}
+
+// Image to the left of the post info
+.post-image {
+  margin-right: 20px;
+}
+
+.post-image img {
+  width: 200px; /* Adjust the width to your desired size */
+  height: auto;
+}
+
+.post-content {
+  flex-grow: 1; /* Allow the content to grow and fill the remaining space */
 }
 
 // Meta data line below post title

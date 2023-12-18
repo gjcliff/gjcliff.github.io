@@ -2,6 +2,7 @@
 layout: post
 title: Releasing Not Pure Poole v0.1.0
 author: Songzi Vong
+image: chicago_at_night.JPG
 tags:
 - jekyll theme
 - jekyll

@@ -39,12 +39,9 @@ plugins:
   - jekyll-sitemap
 
 cover_image: /shirley_daytime.JPG
+avatar: /me_square.png
 paginate: 5
 permalink: pretty
-avatar: /me_square.png
-
-cover_bg_color: rgb(40, 40, 77)
-cover_color: rgb(255, 255, 255)
 
 sass:
   sass_dir: _sass
@@ -56,17 +53,7 @@ author:
   url: https://github.com/gjcliff/
   email: gjcliff@gmail.com
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-exclude:
-  - .git
-  - .gitignore
-  - Gemfile
-  - Gemfile.lock
-  - scripts/
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
