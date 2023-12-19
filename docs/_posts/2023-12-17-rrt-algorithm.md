@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RRT Algorithm
+title: RRT Algorithm Implementation
 date: December 17th, 2023
 image: new_rrt_cover.png
 toc:  true

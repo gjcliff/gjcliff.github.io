@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Franka Robot Arm Word Games
+title: Word Games with the Franka Robot Arm
 date: December 18th, 2023
 image: under-construction.jpg
 toc: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Measuring, Metering Manifold
-date: December 18th, 2023
+date: March 31st 2022
 image: finished_product6.jpg
 toc: true
 math: true
