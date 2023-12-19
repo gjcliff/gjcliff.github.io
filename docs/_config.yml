@@ -41,7 +41,7 @@ plugins:
 cover_image: /shirley_daytime.JPG
 avatar: /me_square.png
 paginate: 5
-permalink: pretty
+permalink: "/:title/"
 
 sass:
   sass_dir: _sass
