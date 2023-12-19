@@ -45,11 +45,12 @@
 
 // Image to the left of the post info
 .post-image {
+  max-width: 25%;
   margin-right: 20px;
 }
 
 .post-image img {
-  max-width: 300px; /* Adjust the width to your desired size */
+  max-width: 100%; /* Adjust the width to your desired size */
   height: auto;
 }
 
