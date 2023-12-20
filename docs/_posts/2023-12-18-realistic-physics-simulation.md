@@ -8,6 +8,6 @@ math: true
 ---
 Realistic simulation of a toy jack bouncing around inside a box using the Euler-Lagrange equations with impact.
 
-## **[Link to this project's Github](https://github.com/gjcliff/Physics-Simulation)**
+## [Link to this project's Github](https://github.com/gjcliff/Physics-Simulation)
 
 This project is under construction, and will be available by 12/28/2023.

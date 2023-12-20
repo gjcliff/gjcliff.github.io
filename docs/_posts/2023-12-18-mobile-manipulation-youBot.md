@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mobile Manipulation with the youBot
+title: Feedforward Plus Feedback Control for Mobile Manipulation With the youBot 
 date: December 18th, 2023
 image: mm_cover.png
 toc: true
@@ -8,7 +8,7 @@ math: true
 ---
 A python script that plans a trajectory for the end-effector of the youBot mobile manipulator.
 
-## **[Link to this project's Github](https://github.com/gjcliff/Mobile-Manipulation-youBot)**
+## [Link to this project's Github](https://github.com/gjcliff/Mobile-Manipulation-youBot)
 
 ![youBot gif](/public/Mobile-Manipulation-youBot_images/wowza.gif "youBot gif")
 

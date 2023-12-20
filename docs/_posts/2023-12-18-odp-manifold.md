@@ -8,7 +8,7 @@ math: true
 ---
 This is a fluidic manifold that I created in the machine shop with a fellow engineer at On Demand Pharmaceuticals.
 
-## **[Link to this project's Github](https://github.com/gjcliff/Measuring-Metering-Manifold)**
+## [Link to this project's Github](https://github.com/gjcliff/Measuring-Metering-Manifold)
 
 ## Design
 
@@ -44,13 +44,17 @@ Finished Product:
 ## Youtube Videos of the Fabrication
 
 **Cutting the Fluid Path**  
-[![Cutting Fluid Path](https://img.youtube.com/vi/iTlU1IRzyuI/0.jpg)](https://youtube.com/shorts/iTlU1IRzyuI?feature=share "Cutting Fluid Path")
+<!-- [![Cutting Fluid Path](https://img.youtube.com/vi/iTlU1IRzyuI/0.jpg)](https://youtube.com/shorts/iTlU1IRzyuI?feature=share "Cutting Fluid Path") -->
+<iframe height="560" width="315" src="https://www.youtube.com/embed/iTlU1IRzyuI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 **Concept, Design, Prototype**  
-[![Concept, Design, Prototype](https://img.youtube.com/vi/sd_dGOf4AyM/0.jpg)](https://youtu.be/sd_dGOf4AyM "Concept, Design, Prototype")
+<!-- [![Concept, Design, Prototype](https://img.youtube.com/vi/sd_dGOf4AyM/0.jpg)](https://youtu.be/sd_dGOf4AyM "Concept, Design, Prototype") -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sd_dGOf4AyM?si=uJIGOcepRY2DGzjC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 **Tapping Holes Using the Tap-o-matic**  
-[![Tapping Holes](https://img.youtube.com/vi/9vXp9GG40Oo/0.jpg)](https://youtube.com/shorts/9vXp9GG40Oo?feature=share "Tapping Holes")
+<!-- [![Tapping Holes](https://img.youtube.com/vi/9vXp9GG40Oo/0.jpg)](https://youtube.com/shorts/9vXp9GG40Oo?feature=share "Tapping Holes") -->
+<iframe height="560" width="315" src="https://www.youtube.com/embed/9vXp9GG40Oo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 **Measuring the Surface Finish Using a Dial Indicator**  
-[![Using Dial Indicator](https://img.youtube.com/vi/l04FvWt2bc0/0.jpg)](https://youtube.com/shorts/l04FvWt2bc0?feature=share "Using Dial Indicator")
+<!-- [![Using Dial Indicator](https://img.youtube.com/vi/l04FvWt2bc0/0.jpg)](https://youtube.com/shorts/l04FvWt2bc0?feature=share "Using Dial Indicator") -->
+<iframe height="560" width="315" src="https://www.youtube.com/embed/l04FvWt2bc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

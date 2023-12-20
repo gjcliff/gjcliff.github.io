@@ -10,7 +10,7 @@ This project implements the rapidly-expanding random tree algorithm, first devel
 
 A link to his original paper is [here](https://msl.cs.illinois.edu/~lavalle/papers/Lav98c.pdf).
 
-## **[Link to this project's Github](https://github.com/gjcliff/RRT)**
+## [Link to this project's Github](https://github.com/gjcliff/RRT)
 
 <!-- ![RRT gif](/public/RRT_images/rrt.gif "RRT gif") -->
 <img src="/public/RRT_images/rrt_new.gif" alt="RRT gif" width="500" height="500">
