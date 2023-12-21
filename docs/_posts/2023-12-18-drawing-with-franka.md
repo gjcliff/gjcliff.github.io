@@ -215,3 +215,5 @@ Our final stretch goal that we would love to improve our project with is changin
 The following video showcases a full runthrough of our project. In it, we demonstrate the robot's ability to calibrate and determine the position of the board, run through the game setup sequence while using force control, and interact with the player and receive both single letter and full word guesses.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Q81Vcnj9kqs?si=IW1VO1uAep_BzxOy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DP6H0kjled4?si=mBuL7BCzJbJMSIfp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
