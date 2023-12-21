@@ -164,46 +164,6 @@ After the replan request is complete, the send_trajectory.py node will enter int
 
 In the near future, I will update the PID loop so that the position of the end-effector with respect to the whiteboard is the output. This output can then be used to calculate a new point to continue drawing the current letter on the whiteboard from, and then this new point is used to perform inverse kinematics. The joint angles received from the inverse kinematics service are used to update the JointTrajectory messages being published *on the fly*. Pretty cool! As long as it's fast enough, I believe that it will be more accurate than what I have currently implemented.
 
-## Lessons Learned
-1. OCR:
-
-    The PaddleOCR model comprises two layers: text detection and recognition. The detection layer searches for text in the image, identifying regions of interest, while the recognition layer identifies the text within these bounded regions, providing predictions with associated confidence values. Our tests indicate that the model struggles to reliably detect single characters in images, seemingly because it is trained on materials such as books and articles that feature large blocks of text. Consequently, it fails to produce accurate guesses in such scenarios. To address this issue, we disable the text detection feature in PaddleOCR and exclusively utilize its text recognition capability.
-
-    We use OpenCV to modify the image before feeding it into PaddleOCR in order to improve accuracy:
-
-    - Convert the image from RGB to grayscale.
-    - Apply Gaussian blurring to reduce noise.
-    - Employ Canny edge detection to identify edges in the image.
-    - Identify closed contours and sort them based on contour area.
-    - Iterate over the contours to pinpoint the largest contour approximating a rectangle, which corresponds to the whiteboard.
-    - Apply a four-point perspective transform to straighten the image.
-    - Binarize the warped image using adaptive thresholding to account for lighting differences.
-    - Use the dilation operation to widen the text within the bounded region (only performed for single-character recognition).
-
-    Subsequently, we publish two sets of images that are fed into the OCR model for recognition.
-
-    The OCR model provides predictions with associated confidence values. To refine result accuracy, we've implemented a simple filtering mechanism. This filter assesses predictions from the OCR model, gauging their legitimacy based on both the frequency of a particular prediction and its confidence value. High-confidence guesses pass through quickly, while low-confidence and frequently occurring predictions may experience a slight delay but are eventually processed. However, low confidence and infrequent predictions are prevented from passing through altogether. This approach ensures that our system avoids false-positive predictions, maintaining a more reliable and accurate output.
-
-2. Admittance Control
-
-    Implementing admittance control was challenging to say the least. After we figured out many different wrong ways to achieve admittance control, we settled on a practical but inaccurate method. Our admittance controls works as follows:
-    Calculate the expected torque in panda_joint6 due to the weight of the gripper and its attachments.
-    Obtain a plane from the april tag attached to the whiteboard. The robot will attempt to draw at points in this plane.
-    Subtract this expected torque from the actual torque in panda_joint6, and then convert any difference in these two values into linear force in the end-effector’s frame.
-    If we measure a force greater than a certain threshold in the end-effector frame’s x direction, then we must be making contact with the whiteboard. At this point, stop moving the gripper.
-    We learned that apparently we cannot cancel action goals in ROS Iron at this time. Because of this, we had to write our own node for executing planned robot trajectories.
-    This node works as follows:
-    Plan a trajectory, and then repackage that trajectory into a list of JointTrajectory messages, each with one JointTrajectoryPoint.
-    Do not forget to change the time_from_start parameter in the JointTrajectoryPoint message to 100000000 nano seconds. If you do not do this, the robot will behave unpredictably.
-    Publish each of these JointTrajectory messages one by one on the /panda_arm_controller/joint_trajectory topic in a timer_callback with a 10hz frequency.
-    After stopping the gripper, update the plane obtained from the april tag at the beginning of the procedure to be aligned with the point the end effector impacted the whiteboard.
-    Plan a trajectory to the next pose in the queue.
-    Move to this point with PID admittance control enabled, where the input to the PID loop is the force at the end effector, and the output is the angle of panda_joint6.
-
-    This method is inaccurate, and a little crude. The calculation of the force at the end-effector isn’t always correct, joint torque measurements from the Franka itself can be noisy and erratic, and using only the angle of panda_joint6 as the output of the PID loop can cause curved lines drawn on the whiteboard. In the future, a better implementation would be to write a c++ node that completely controls the Franka, alongside a ros_control c++ file that implements the admittance control. I’m not sure if both or only one of these would be necessary. Libfranka does a lot more math for you than MoveIT does which is essential for admittance control. 
-
-    In addition, our group was running the moveit.launch.py file for the Franka on our own pcs, which was a huge mistake because we were missing out on the benefits of having a real time operating system controlling the robot. I (Graham) take full responsibility for this.
-
 ## Future Work
 Although our team redesigned a spring force control adapter for the Franka gripper for our fallback goal, we quickly outgrew the need for it as we began trying to implement force control. However, our project could still be significantly improved on the force control side of things. By the demo day, our team had achieved using force control to draw characters on the board but could have improved the quality of writing with more time to tune the force control parameters.
 
