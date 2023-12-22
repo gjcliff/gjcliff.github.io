@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SLAM Frontier Exploration with Visualized Wavefront Planning (Available by 12/23/2023)
+title: SLAM Frontier Exploration with Visualized Wavefront Planning
 date: December 21st, 2023
 image: nubot.png
 toc: true
@@ -9,8 +9,6 @@ math: true
 Use robot manipulation, admittance control, computer vision, and machine learning to play word games with the Franka robot arm.
 
 ## [Link to this project's Github](https://github.com/gjcliff/SLAM-Frontier-Exploration)
-
-**This post is under construction, and will be complete by 12/28/2023**
 
 This package uses frontier exploration and wavefront planning to autonomously drive a differential-drive robot named "nubot"
 around its environment, while simultaneously mapping that environment using slam_toolbox. Nav2 is used
