@@ -40,7 +40,7 @@ plugins:
 
 cover_image: /shirley_daytime.JPG
 avatar: /me_square.png
-paginate: 5
+paginate: 10
 permalink: "/:title/"
 
 sass:
@@ -51,7 +51,7 @@ sass:
 author:
   name: Graham Clifford
   url: https://github.com/gjcliff/
-  email: gjcliff@gmail.com
+  email: gclifford@u.northwestern.edu
 
 collections:
   projects:
