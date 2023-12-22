@@ -12,7 +12,31 @@ Using OpenCV and the Intel RealSense D435i camera to help a PX100 robot arm grab
 
 <img src="/public/Pen-Challenge/full_demo.gif" alt="drawing" width="400"/>
 
+## Introduction
+
 The goal of this project is to enable the PincherX 100 robot arm to grab a pen that's held in front of it. The tools used to complete this task are OpenCV, Numpy, a Linux FIFO pipe, Python, an Intel RealSense D435i, and a PincherX 100 robot arm.
+
+## How to Run
+
+1. Clone the repository.
+2. Plug your RealSense D435i camera into a USB3 port on your computer.
+3. Plug your PincherX 100 robot into any USB port on your computer.
+4. Place the RealSense and the PincherX 100 at 90 degree angles to each other. Do your best to place the Pincher so that its end-effector is around x = 260, y = 150, z = -60 (units: mm, x axis is in and out of the camera, y axis is left and right across the camera, z axis is in and out of the table). You'll probably want to play around with these values on line 16 of robot_control.py. Sorry for hardcoding! Will improve upon this eventually.
+5. In one terminal window, run:
+```
+$ ros2 launch interbotix_xsarm_control xsarm_control.launch.py robot_model:=px100
+```
+5. In another terminal window, run:
+```
+$ python pen_recognition.py
+```
+6. In another terminal, run:
+```
+$ python robot_control.py
+```
+7. Hold the pen up in front of the camera, and within the Pincher's workspace.
+
+## Implementation
 
 ### Computer Vision
 
@@ -26,7 +50,9 @@ Once this trajectory is finished, the gripper will close, and the robot will hav
 
 ### Future Work
 
-I completed this project before I knew anything about ROS or basic robotics math like transformation matrices. I plan to go back and redo the project at some point in the near future to improve upon it, and to learn more about computer vision in the process.
+I completed this project before I knew anything about ROS or basic robotics math like transformation matrices. I plan to go back and redo the project at some point in the near future to improve upon it, and to learn more about computer vision in the process. There are some hard coded values which can be solved with April Tags or maybe additional color masks.
+
+I plan to eventually go back and make this project a ROS2 Iron package.
 
 ## Gallery
 

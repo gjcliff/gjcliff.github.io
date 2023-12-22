@@ -6,7 +6,7 @@ image: franka_a.PNG
 toc: true
 math: true
 ---
-Use robot manipulation, admittance control, computer vision, and machine learning to play word games with the Franka robot arm.
+Using robot manipulation, admittance control, computer vision, and machine learning to play word games with the Franka robot arm.
 
 ## [Link to this project's Github](https://github.com/gjcliff/Franka-Word-Games)
 
