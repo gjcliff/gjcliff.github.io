@@ -10,6 +10,8 @@ This is a fluidic manifold that I created in the machine shop with a fellow engi
 
 ## [Link to this project's Github](https://github.com/gjcliff/Measuring-Metering-Manifold)
 
+![placeholder](/public/cover_images/finished_product6.jpg "finished product")
+
 ## Design
 
 I spent hours hashing out the details of the fluid path, sensors, and features of the manifold. Below is an example of one of the block diagrams I made to represent the fluid path and measuring components on the manifold:
