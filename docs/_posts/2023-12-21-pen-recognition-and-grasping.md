@@ -6,7 +6,7 @@ image: cover_pen_challenge.png
 toc: true
 math: true
 ---
-Use OpenCV and the Intel RealSense D435i camera to help a PX100 robot arm grab a purple pen out of the air.
+Using OpenCV and the Intel RealSense D435i camera to help a PX100 robot arm grab a purple pen out of the air.
 
 ## [Link to this project's Github](https://github.com/gjcliff/Pen_Recognition)
 

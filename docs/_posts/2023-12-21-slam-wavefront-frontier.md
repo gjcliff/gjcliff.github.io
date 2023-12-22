@@ -6,7 +6,7 @@ image: nubot.png
 toc: true
 math: true
 ---
-Use robot manipulation, admittance control, computer vision, and machine learning to play word games with the Franka robot arm.
+Using the ROS2 slam_toolbox and NAV2 packages to help a robot explore and map its environment.
 
 ## [Link to this project's Github](https://github.com/gjcliff/SLAM-Frontier-Exploration)
 
