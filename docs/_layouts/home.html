@@ -35,7 +35,9 @@ layout: default
   {% for post in paginator.posts %}
   <section class="post-entry">
     <div class="post-image">
-      <img src="/public/cover_images/{{ post.image }}" alt="{{ post.title }}">
+      <a href="{{ post.url | relative_url }}">
+        <img src="/public/cover_images/{{ post.image }}" alt="{{ post.title }}">
+      </a>
     </div>
     <div class="post-content">
       <h2 class="post-title">
