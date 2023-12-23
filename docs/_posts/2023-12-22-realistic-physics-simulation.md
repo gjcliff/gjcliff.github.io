@@ -322,7 +322,7 @@ In software, I substituted in all of our variables and equations with:
 - \\\(J_j = 1\\\)
 - \\\(g = 9.81\\\)
 
-and I ended up with the following solutions:
+and after solving for the accelerations of all configuration variables, I ended up with the following solutions:
 
 $$
 \begin{gather}
@@ -335,6 +335,48 @@ $$
 
 And it looks like we have exactly what we want. The box will be rotating, but not falling since it's acceleration in the y direction is 0. The jack will be falling, and getting knocked around by the block since it's acceleration in the y direction is non-zero.
 
-**To be continued...*
+### Impact Equations
+
+**Defining Constraint Equations**
+
+The first thing we need to do is define some constraints.
+
+A constraint equation is represented by the variable \\\(\phi\\\). There will be sixteen constraint equations, each one describing a potential collision between a prong of the jack and a wall of the box.
+
+All of the constraint equations will be in this form:
+
+$$
+\phi_{b_1j_1} = y_{b_1j_1}
+$$
+
+This equation is saying "when the y position of the origin of {\\\(j_1\\\)} is 0 relative to the y axis of the {\\\(b_1\\\)} frame, an impact has occurred."
+
+We can create equations just like this for the rest of the possible impacts, and create a 16x1 matrix from them:
+
+$$
+\phi_{matrix} = \begin{bmatrix} \phi_{b_1j_1} \\ \phi_{b_1j_2} \\ \phi_{b_1j_3} \\ \phi_{b_1j_4} \\ \phi_{b_2j_1} \\ \phi_{b_2j_2} \\ \phi_{b_2j_3} \\ \phi_{b_2j_4} \\ \phi_{b_3j_1} \\ \phi_{b_3j_2} \\ \phi_{b_3j_3} \\ \phi_{b_3j_4} \\ \phi_{b_4j_1} \\ \phi_{b_4j_2} \\ \phi_{b_4j_3} \\ \phi_{b_4j_4} \end{bmatrix}
+$$
+
+**Creating the impact equations**
+
+There are two equations that make up what I've been calling the "impact equations":
+
+$$
+\begin{gather}
+\frac{\partial L}{\partial \dot q}\Bigg|_{\tau^-}^{\tau^+} = \lambda\frac{\partial \phi}{\partial q} \\
+\\
+\Bigg[\frac{\partial L}{\partial \dot q} \cdot \dot q - L(q,\dot q)\Bigg] \Bigg|_{\tau^-}^{\tau^+} = 0
+\end{gather}
+$$
+
+\\\(\tau^-\\\) and \\\(\tau^+\\\) represent the time immediately before impact occurs and the time immediately after impact occurs, respectively.
+
+The first equation can be interpreted as restricting the change in momentum due to impact to lie perpendicular to the contact surface. The second equation states that the Hamiltonian (which is the total energy in the system, in most cases) is conserved through the impact.
+
+After the impact equations are fully constructed, we're going to end up with 112 possible equations (16 impact conditions, each with 7 equations).
+
+As we simulate the jack and box, we'll be checking if any of the impact conditions are met every iteration. If one is met, then we'll use the 7 equations associated with that impact condition to solve for \\\(\dot q^{\tau^+}\\\). 
+
+By solving these equations for 
 
 ## Gallery
