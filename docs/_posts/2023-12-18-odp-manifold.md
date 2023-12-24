@@ -5,6 +5,7 @@ date: March 31st 2022
 image: finished_product6.jpg
 toc: true
 math: true
+tags: [chemistry, machining, mechanical engineering]
 ---
 This is a fluidic manifold that I created in the machine shop with a fellow engineer at On Demand Pharmaceuticals.
 

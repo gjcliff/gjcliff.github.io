@@ -5,6 +5,7 @@ date: December 21st, 2023
 image: nubot.png
 toc: true
 math: true
+tags: [python, ROS, robotics, path planning, algorithms, SLAM, NAV2]
 ---
 Using the ROS2 slam_toolbox and NAV2 packages to help a robot explore and map its environment.
 

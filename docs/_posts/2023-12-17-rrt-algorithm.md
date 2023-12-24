@@ -5,6 +5,7 @@ date: December 17th, 2023
 image: new_rrt_cover.png
 toc:  true
 math: true
+tags: [python, algorithm, robotics, path planning]
 ---
 This project implements the rapidly-expanding random tree algorithm, first developed by Steven LaValle in 1988.
 
@@ -12,9 +13,7 @@ A link to his original paper is [here](https://msl.cs.illinois.edu/~lavalle/pape
 
 ## [Link to this project's Github](https://github.com/gjcliff/RRT)
 
-<!-- ![RRT gif](/public/RRT_images/rrt.gif "RRT gif") -->
 <img src="/public/RRT_images/rrt_new.gif" alt="RRT gif" width="500" height="500">
-
 
 ## How to Run
 To run the file, navigate to the directory where the script is stored and run:

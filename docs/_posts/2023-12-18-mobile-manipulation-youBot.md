@@ -5,6 +5,7 @@ date: December 18th, 2023
 image: mm_cover.png
 toc: true
 math: true
+tags: [python, modern_robotics, robotics, path planning, control theory]
 ---
 A python script that plans a trajectory for the end-effector of the youBot mobile manipulator.
 

@@ -5,6 +5,7 @@ date: December 21st, 2023
 image: cover_pen_challenge.png
 toc: true
 math: true
+tags: [python, computer vision, robotics, opencv]
 ---
 Using OpenCV and the Intel RealSense D435i camera to help a PX100 robot arm grab a purple pen out of the air.
 

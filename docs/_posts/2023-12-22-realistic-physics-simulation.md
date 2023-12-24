@@ -5,6 +5,7 @@ date: December 24th, 2023
 image: physics_sim_cover.png
 toc: true
 math: true
+tags: [python, simulation]
 ---
 Realistic simulation of a toy jack bouncing around inside a box using the Euler-Lagrange equations with fully-elastic impacts.
 

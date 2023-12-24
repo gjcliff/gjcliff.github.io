@@ -5,6 +5,7 @@ date: December 20th, 2023
 image: franka_a.PNG
 toc: true
 math: true
+tags: [python, ROS, MoveIt, robotics, path planning, admittance control]
 ---
 Using robot manipulation, admittance control, computer vision, and machine learning to play word games with the Franka robot arm.
 
