@@ -1,20 +1,20 @@
 ---
 layout: post
-title: "Realistic Physics Simulation: Jack in a Box (Available by 12/28/2023)"
-date: December 22nd, 2023
+title: "Realistic Physics Simulation: Jack in a Box"
+date: December 24nd, 2023
 image: jack-in-box.png
 toc: true
 math: true
 ---
-Realistic simulation of a toy jack bouncing around inside a box using the Euler-Lagrange equations with impact.
+Realistic simulation of a toy jack bouncing around inside a box using the Euler-Lagrange equations with fully-elastic impacts.
 
 ## [Link to this project's Github](https://github.com/gjcliff/Physics-Simulation)
 
-gif goes here
+![10s-gif](/public/Physics-Simulation/new_jb_7s.gif)
 
 ## Introduction
 
-This project implements a realistic simulation of a jack being shaken around inside a box in 2D. 
+This project implements a realistic simulation of a jack being shaken around inside a box in 2D using python's sympy library and plotly. All of the equations and logic are initially constructed, executed, and simulated using sympy and then the simulation is animated by plotly.
 
 The simulation has two bodies, six degrees of freedom, includes impacts, has external forces, and is planar.
 
@@ -24,7 +24,7 @@ Simply clone the repository, open the .ipynb using the application of your choic
 
 ## Implementation
 
-### Define Configuration Variables
+### Defining Configuration Variables
 
 We begin by defining our system and all of its variables. Our configuration variables will be:
 - \\\(x_b\\\): The x location of the origin of the {b} frame in the {w} frame.
@@ -48,7 +48,7 @@ Other variables we'll define now are:
 - \\\(J_b\\\): The inertia of the box about its z axis.
 - \\\(J_j\\\): The inertia of the jack about its z axis.
 
-### Define Coordinate Frames
+### Defining Coordinate Frames
 
 Next, we must define the coordinate frames that make up our system. Below is a list of the frames I created and their descriptions, as well as an image of the system displaying the location of all frames and their labels:  
 
@@ -72,7 +72,7 @@ By the way, I'm calling the little rod extending from the center of the jack inc
 - {\\\(b_3\\\)}: child of the {b} frame, residing at the center of the 3rd side of the box.
 - {\\\(b_4\\\)}: child of the {b} frame, residing at the center of the 4th side of the box.
 
-### Define Relationships Between Frames
+### Defining Relationships Between Frames
 
 Now that we've defined all of the coordinate frames in the system, we must establish transformation (rotation and position) matricies between all frames with important relationships. It'll be important to know transformations between the world frame and the box, jack, and all subframes. Additionally, we must know the transformation between all subframes in the jack and all subframes in the box (16 total) in order to calculate the impact equations later on.
 
@@ -197,7 +197,7 @@ g_{b3j4} = (g_{wb3})^{-1} \cdot g_{wj4} \hskip 2em g_{b4j4} = (g_{wb4})^{-1} \cd
 \end{align*}
 $$
 
-### Construct the Euler Lagrange Equation
+### Constructing the Euler Lagrange Equation
 
 Now that we've defined all the transforms we'll need to simulate the system, it's time to construct the Euler Lagrange equation.
 
@@ -335,7 +335,9 @@ $$
 
 And it looks like we have exactly what we want. The box will be rotating, but not falling since it's acceleration in the y direction is 0. The jack will be falling, and getting knocked around by the block since it's acceleration in the y direction is non-zero.
 
-### Impact Equations
+These are the Equations of Motion!
+
+### Defining the Impact Equations
 
 **Defining Constraint Equations**
 
@@ -375,8 +377,62 @@ The first equation can be interpreted as restricting the change in momentum due 
 
 After the impact equations are fully constructed, we're going to end up with 112 possible equations (16 impact conditions, each with 7 equations).
 
-As we simulate the jack and box, we'll be checking if any of the impact conditions are met every iteration. If one is met, then we'll use the 7 equations associated with that impact condition to solve for \\\(\dot q^{\tau^+}\\\). 
+As we simulate the jack and box, we'll be checking if any of the impact conditions are met every iteration. If one is met, then we'll use the 7 equations associated with that impact condition to solve for \\\(\dot q(\tau^+)\\\). 
 
-By solving these equations for 
+Solving for the velocity of all configuration variables at the moment just after impact allows us to accurately update the jack's and box's trajectory and create a realistic simulation. 
 
-## Gallery
+There's no need to solve for \\\(q(\tau^+)\\\), since it's the exact same as \\\(q(\tau^-)\\\), which is known.
+
+### Simulating the System
+
+Finally everything is in place for us to simulate the system. 
+
+We start by defining a threshold that determines when an impact occurs. After some trial and error, I chose 0.2 meters. Each iteration of the simulation, we check to see if any of our 16 impact conditions have been met. To do this, we can use sympy lambdify to make our \\\(\phi_{matrix}\\\) into an executable function. 
+
+The function to check if an impact has occurred is quite simple, so I'll include it below for better understanding:
+
+```
+def impact_condition(s, thresh):
+    """
+    Check if an impact has occurred.
+
+    Check if an impact has occured and if it has
+    return True, and where in the phi matrix it
+    occurred.
+
+    Args:
+    ----
+    s: The current configuration variables.
+    thresh: The threshold for impact to have occurred.
+
+    Returns:
+    -------
+    bool: Whether or not an impact occurred.
+    i: Which impact condition was triggered.
+
+    """
+    phiq = phi_mat_lam(*s)
+    for i,phi in enumerate(phiq):
+    if phi < thresh and phi > -thresh:
+        return True, i
+    return False, i
+```
+
+"s" takes the form:
+
+$$
+s = \begin{bmatrix} x_b & y_b & \theta_b & x_j & y_j & \theta_j & \dot x_b & \dot y_b & \dot \theta_b & \dot x_j & \dot y_j & \dot \theta_j \end{bmatrix}
+$$
+
+If an impact has occurred, we need to access the 7 equations associated with this impact condition and plug in the configuration variables at the current time step.
+
+Next, we solve these 7 equations for lambda and \\\(\dot q(\tau^+)\\\). We'll get two solutions for lambda, and each solution for lambda has a unique \\\(\dot q(\tau^+)\\\). We only want the solution with a positive value for lambda. The reason for this is that the wall can only act away from its surface, and a negative lambda would correspond to the wall sucking the point in.
+
+What is lambda? As far as I understand, it's a scalar value corresponding to the magnitude of the force required to enforce a constraint.
+
+Once we have \\\(\dot q(\tau^+)\\\), we can substitute it in for the configuration variables' velocities at the current time step (final six variables in the s matrix).
+
+Once the simulation concludes, then all we have to do is animate it. The code for animating the system is repetitive, and I'll leave it as an exercise for the reader to go and checkout my github to see how it works.
+
+The gif at the top shows an example of the animated simulation, but here it is again:
+![sim_again](/public/Physics-Simulation/new_jb_7s.gif)
