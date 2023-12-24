@@ -10,6 +10,8 @@ Realistic simulation of a toy jack bouncing around inside a box using the Euler-
 
 ## [Link to this project's Github](https://github.com/gjcliff/Physics-Simulation)
 
+## [Link to this project's Google Colab](https://colab.research.google.com/drive/1_Ylm8S_zRLJuRgHQ5NEaSpnJA5u357Pt?usp=sharing)
+
 ![10s-gif](/public/Physics-Simulation/new_jb_7s.gif)
 
 ## Introduction
@@ -387,7 +389,7 @@ There's no need to solve for \\\(q(\tau^+)\\\), since it's the exact same as \\\
 
 Finally everything is in place for us to simulate the system. 
 
-We start by defining a threshold that determines when an impact occurs. After some trial and error, I chose 0.2 meters. Each iteration of the simulation, we check to see if any of our 16 impact conditions have been met. To do this, we can use sympy lambdify to make our \\\(\phi_{matrix}\\\) into an executable function. 
+We start by defining a threshold that determines when an impact occurs. After some trial and error, I chose 0.3 meters. Each iteration of the simulation, we check to see if any of our 16 impact conditions have been met. To do this, we can use sympy lambdify to make our \\\(\phi_{matrix}\\\) into an executable function. 
 
 The function to check if an impact has occurred is quite simple, so I'll include it below for better understanding:
 
@@ -435,4 +437,9 @@ Once we have \\\(\dot q(\tau^+)\\\), we can substitute it in for the configurati
 Once the simulation concludes, then all we have to do is animate it. The code for animating the system is repetitive, and I'll leave it as an exercise for the reader to go and checkout my github to see how it works.
 
 The gif at the top shows an example of the animated simulation, but here it is again:
+
 ![sim_again](/public/Physics-Simulation/new_jb_7s.gif)
+
+And here's a graph of all configuration variables during the simulation time:
+
+![graph](/public/Physics-Simulation/graph.png)
