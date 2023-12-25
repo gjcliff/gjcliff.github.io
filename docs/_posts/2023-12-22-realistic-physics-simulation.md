@@ -55,7 +55,7 @@ Other variables we'll define now are:
 
 Next, we must define the coordinate frames that make up our system. Below is a list of the frames I created and their descriptions, as well as an image of the system displaying the location of all frames and their labels:  
 
-![Drawing](/public/Physics-Simulation-Images_images/drawing_white_bckgrnd.png)
+![Drawing](/public/Physics-Simulation/drawing_white_bckgrnd.png)
 
 By the way, I'm calling the little rod extending from the center of the jack including the ball on the edge a "prong".
 
