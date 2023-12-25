@@ -38,6 +38,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+google_analytics: G-RT7CVF8GLG
+
 cover_image: /shirley_daytime.JPG
 avatar: /me_square.png
 paginate: 10
@@ -57,5 +59,3 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
-
-google_analytics: G-RT7CVF8GLG
