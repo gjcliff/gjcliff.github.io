@@ -9,7 +9,7 @@ tags: [chemistry, machining, mechanical engineering]
 ---
 This is a fluidic manifold that I created in the machine shop with a fellow engineer at On Demand Pharmaceuticals.
 
-## [Link to this project's Github](https://github.com/gjcliff/Measuring-Metering-Manifold)
+<!-- ## [Link to this project's Github](https://github.com/gjcliff/Measuring-Metering-Manifold) -->
 
 ![placeholder](/public/cover_images/finished_product6.jpg "finished product")
 
