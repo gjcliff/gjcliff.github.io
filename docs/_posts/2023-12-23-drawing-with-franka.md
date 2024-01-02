@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Advanced Robot Manipulation and Admittance Control on the Franka Panda Robot Arm
-date: December 20th, 2023
+date: December 23rd, 2023
 image: franka_a.PNG
 toc: true
 math: true
