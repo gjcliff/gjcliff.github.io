@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rapidly-Exploring Random Tree (RRT) Path Planning
-date: December 17th, 2023
+date: December 23rd, 2023
 image: new_rrt_cover.png
 toc:  true
 math: true

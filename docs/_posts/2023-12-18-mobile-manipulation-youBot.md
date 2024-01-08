@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Feedforward Plus Feedback Control for Mobile Manipulation With the youBot
-date: December 18th, 2023
+date: December 22nd, 2023
 image: mm_cover.png
 toc: true
 math: true
