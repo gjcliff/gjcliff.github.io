@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Realistic Physics Simulation: Jack in a Box"
-date: December 24th, 2023
+date: December 22nd, 2023
 image: physics_sim_cover.png
 toc: true
 math: true
