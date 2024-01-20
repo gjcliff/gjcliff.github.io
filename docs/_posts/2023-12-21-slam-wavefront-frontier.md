@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SLAM Frontier Exploration with Visualized Wavefront Planning
-date: December 21st, 2023
+date: December 22nd, 2023
 image: nubot.png
 toc: true
 math: true
