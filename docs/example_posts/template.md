@@ -2,14 +2,14 @@
 layout: post
 title: 
 date: December 21st, 2023
-image: jack-in-box.png
+image: under-construction.jpg
 toc: true
 math: true
 ---
 
-short intro goes here
 
-## [Link to this project's Github](https://github.com/gjcliff/???)
+
+## [Link to this project's Github](https://github.com/gjcliff/SlamFromScratch)
 
 gif goes here
 
