@@ -2,7 +2,7 @@
 layout: post
 title: Robot Arm Teleoperation Through Computer Vision Hand-Tracking
 date: February 22, 2024
-image: franka_teleop_cover.png
+image: franka_combined.png
 toc: true
 math: true
 ---
