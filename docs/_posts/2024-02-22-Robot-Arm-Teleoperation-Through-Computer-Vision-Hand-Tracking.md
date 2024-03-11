@@ -2,14 +2,17 @@
 layout: post
 title: Robot Arm Teleoperation Through Computer Vision Hand-Tracking
 date: February 22, 2024
-image: under-construction.jpg
+image: franka_teleop_cover.png
 toc: true
 math: true
 ---
 
 This project controls the Franka Emika Panda robot arm via teleoperation and computer vision.
 
-### This project is currently under construction, and will be available by March 16, 2024
+### **This project is currently under construction, and will be available by March 16, 2024**
+
+Check out some of the results!  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uvl9b5SWJhs?si=lDSZugwc440Z3mJJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ![franka_servo gif](/public/Franka-Teleop/franka_servo.gif)
 
