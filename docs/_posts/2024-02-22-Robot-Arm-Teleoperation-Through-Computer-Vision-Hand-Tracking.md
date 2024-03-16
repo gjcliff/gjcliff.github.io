@@ -64,89 +64,89 @@ connection to the Franka):
 ```$ source moveit_servo/install/setup.bash```  
 ```$ source ros_testing/install/setup.bash```  
 
+You might not have to do this, as I installed these files myself on two of the
+robots under ~/Documents/graham_winter_project.  
+
 #### Running Commands
+**Real Robot**:
 Run on robot: ros2 launch cv_franka_bridge integrate_servo.launch.py use_fake_hardware:=false use_rviz:=false robot_ip:=panda0.robot use_realsense:=false run_franka_teleop:=true
 Run on your computer: ros2 launch cv_franka_bridge integrate_servo.launch.py use_fake_hardware:=false use_rviz:=true robot_ip:=panda0.robot use_realsense:=true run_franka_teleop:=false
 
+**Simulated Robot**:
+Run on your computer: ros2 launch cv_franka_bridge integrate_servo.launch.py
+
+### If you're not at the MSR Lab
+You can definitely get the simulation working. You might need to fiddle with
+the camera setup if you don't have a D435i RealSense. I will leave it up to you
+to figure out how to get the files working correctly on your robot. What's the old
+saying? "The rest is left as an exercise for the reader."
+
 ## Implementation
+The system is composed of three main nodes: handcv, cv_franka_bridge, and franka_teleop.
+The handcv node is responsible for capturing the 3D position of the user's hands and providing
+gesture recognition. The cv_franka_bridge is responsible for processing the information
+provided from handcv, and sending commands to the franka_teleop node. The franka_teleop
+node is running an implementation of the moveit_servo package, which allows for
+smooth real-time control of the franka robot.
+
 Here's a basic block diagram of the system:
 ![block diagram](/public/Franka-Teleop/block_diagram.png)
 
-The system is composed of three main nodes: handcv, cv_franka_bridge, and franka_teleop.
-handcv is responsible for capturing the 3D position of the user's hands and providing
-gesture recognition. Right now, gestures from both hands are captured but only
-gestures from the right hand are used to control the robot. It's also possible 
-to train the model to recognize extra gestures in addition to the default mediapipe
+Right now, gestures from both hands are captured, but only
+gestures from the right hand are used to control the robot. In a future implementation
+of this project, I plan to use the left hand to control the orientation of the end effector.
+It's also possible to train the mediapipe model to recognize custom gestures in addition to the default
 gestures.
 
-To begin teleoperation, give the camera a thumbs up with your right hand. The
-robot will immediately start tracking the location of your right hand. To be
-exact, the center of your palm is used as the center of your hand. As you move
-your hand, the robot end effector will move with you. By default, camera is
-meant to be facing you, and the robot is also meant to be facing you. This will
-make it so when you move your hand to the right, the robot will also move to the
-right, and so on. There is no logic to determine the orientation or location of 
-the camera in regards to the robot.
+Here's a list of the gestures the system recognizes and what they do:
+* **Thumbs Up (Start/Stop Tracking)**: This is one of the gestures used to tell the code to start/stop
+tracking the position of your right hand. You also use this gesture to adjust
+your hand in the camera frame without moving the robot. While the camera sees
+you giving a thumbs up the robot won't move, but once you release your hand
+the robot will start tracking your hand.
+* **Thumbs Down (Shutdown)**: This gesture is used to tell the code to stop tracking your hand,
+and to end the program. You will not be able to give the thumbs up gesture
+anymore, and will have to restart the program to start tracking your hand again.
+* **Close Fist (Close Gripper)**: This gesture will close the gripper of the robot.
+* **Open Palm (Open Gripper)**: This gesture will open the gripper of the robot.
 
-This is something that I want to add in the future, although I think it may
-involve some sort of hardcoding since the camera can't see the location of the robot.
-
-If you want to stop teleoperation permanently, give the camera a thumbs down with
-your right hand. This won't kill the cv_franka_bridge node, but it will stop
-tracking your hand until the node is killed and restarted.
-
-If you want to readjust your hand in the frame of the camera without moving the
-robot, give the camera another thumbs up with your right hand. As long as you
-are giving a thumbs up, the robot won't track the postion of your hand in the
-camera frame. Once you stop giving a thumbs up, the robot will start tracking
-your hand again.
-
-If any of this confuses you, I assure you it's not your fault. I suggest watching
-the youtube video of me demoing the system. The link to this video is at the
-bottom of this page in the gallery section.
-
-You can close the gripper by making a fist with your right hand. The gesture
-recognition is a little finicky and it's not perfect, so it's somewhat important
-to try and make a fist with your palm facing the camera. The gripper will open
-when you unclench your fist and show the camera your open palm.
-
-The current implementation of the gripper is quite simple. It will grab any
-object that can fit between the gripper's fingers, however it cannot grip with
-precise forces. This is a limitation of the Franka's ROS2 gripper node and the
-Grasp Action message (I'm 99% sure), but in the future I would love to be able
-to objects of any width with specific amounts of force. If I am wrong about this,
-please don't hesitate to contact me and correct me. I would actually really
-appreciate it if you did.
+If you'd like to see a demonstration of these gestures, you can watch the youtube
+video at the top of the page.
 
 ## Lessons Learned
-I learned a lot about how robots are integrated with moveit in this project. I
-spent the first four weeks digging deep into moveit and franka documentation and
-trying to understand how each of them were integrated with each other.
-What I learned was that even though moveit uses the franka robot arm in all of
-its tutorials, the files moveit provides for the arm will not work on the real
-robot. I also learned that the configuration files provided by the franka arm's
-team don't play very well with moveit_cpp or moveit_servo. I had to go deep into
-both packages' configuration files and painstakingly combine them to get my project
-to work. The resulting package is the msr_franka_moveit_config package.
+**Integrating MoveIt and Franka**  
+I spent a lot of time integrating the franka robot with moveit. The launch files,
+URDFs, and SRDF files distributed by Franka themselves were not compatible with
+any of the MoveIt tutorials on moveit_cpp or moveit_servo, both of which I wanted
+to get working. I ended up having to modify many of the configuration files provided
+by Franka by hand to get everything to work. This was a great way to learn in-depth
+about getting a robot setup and integrated wth moveit.  
+**Teleoperating a Robot**  
+I wasn't sure how to go about achieving teleoperation at first. I ended up deciding
+on a PD control loop, where the difference between the desired position of the
+end effector and the current position of the end effector is used to calculate
+the magnitude of a linear output vector which tells the robot how to move at
+each time step. I also learned that when using the moveit_servo package the
+robot joints tend to drift, so I had to enforce both the 3D position of the
+end effector that I wanted as well as the orientation that I wanted at every 
+time step.
 
 ## Future Work
 The features that I would most like to add to this project are:
 * 6 dof control of the end-effector
-    * Right now I can only control 3 dof (xyz position). I would really love
-    to be able to control the orientation of the end effector as well. I would use
-    my left hand to do this by calculating a vector between the bottom of my left
+    * Right now I can only control 3 dof (xyz position). To control the orientation,
+    I could calculate a vector between the bottom of my left
     palm and the tip of my left middle finger. Doing this would allow me to construct
-    a quaterion and use it to control the orientation of the end effector.
+    a quaternion and use it to control the orientation of the end effector.
 * Force control in the gripper
     * I think that this project would greatly benefit from granular force control
-    in the gripper. The system is quite dexterous and precise, and it really bugs
-    me that the gripper is not as precise as the rest of the system.
+    in the gripper. The system is quite dexterous and precise, however I was not
+    able to figure out how to get the gripper to grip arbirarily shaped objects
+    with specific amounts of force. One day I would like to add this feature.
 * Smoother servoing
-    * I would like to write my own ros2_control plugin to allow for smooth control
-    of the end-effector. I know that packages already exist to do this and have
+    * Right now there is this issue where if I move too fast the robot's movement
+    starts to get jittery. I would like to write my own ros2_control plugin to allow for smooth control
+    of the end-effector. I know that packages and control plugins already exist to do this and have
     been used successfully by others to achieve very smooth servoing, however
     I've been wanting to learn how to write my own ros2_control plugin and this
     would be a great opportunity to do so.
-* Behavior Cloning
-    * I can see how this interface could be leveraged to train a behavior cloning
-    model, and I think this would be a great learning opportunity.
