@@ -11,6 +11,8 @@ This project controls the Franka Emika Panda robot arm via teleoperation and com
 
 ![franka_servo gif](/public/Franka-Teleop/franka_servo.gif)
 
+To see a full length video demonstration, head over to the [Gallery](#gallery) section.
+
 ## [Link to this project's Github](https://github.com/gjcliff/FrankaTeleop)
 
 ## Introduction
@@ -35,19 +37,27 @@ It's also possible to train the mediapipe model to recognize custom gestures in 
 gestures.
 
 Here's a list of the gestures the system recognizes and what they do:
+
 * **Thumbs Up (Start/Stop Tracking)**: This is one of the gestures used to tell the code to start/stop
 tracking the position of your right hand. You also use this gesture to adjust
 your hand in the camera frame without moving the robot. While the camera sees
 you giving a thumbs up the robot won't move, but once you release your hand
 the robot will start tracking your hand.
+![thumbs_up](/public/Franka-Teleop/thumbs_up.png)
+
 * **Thumbs Down (Shutdown)**: This gesture is used to tell the code to stop tracking your hand,
 and to end the program. You will not be able to give the thumbs up gesture
 anymore, and will have to restart the program to start tracking your hand again.
+![thumbs_down](/public/Franka-Teleop/thumbs_down.png)
+
 * **Close Fist (Close Gripper)**: This gesture will close the gripper of the robot.
+![closed_fist](/public/Franka-Teleop/closed_fist.png)
+
 * **Open Palm (Open Gripper)**: This gesture will open the gripper of the robot.
+![open_palm](/public/Franka-Teleop/open_palm.png)
 
 If you'd like to see a demonstration of these gestures, you can watch the youtube
-video at the top of the page.
+video the [Gallery](#gallery) section.
 
 ## Lessons Learned
 **Integrating MoveIt and Franka**  
