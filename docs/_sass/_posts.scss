@@ -10,6 +10,65 @@
   align-items: center;
 }
 
+/* Featured Posts Section */
+.featured-posts {
+  // background-color: #133337;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  // border: 1px inset #007bff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1.0);
+}
+
+.featured-posts h1 {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  // background: linear-gradient(to right, #007bff, #00d4ff); /* Gradient background */
+  // background: linear-gradient(to right, #5a6c75, #7b8a8b); /* Lighter dark blue-grey gradient background */
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add text shadow for depth */
+  padding: 10px 20px; /* Add padding around the title */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  // color: #007bff;
+}
+
+/* Banner */
+.featured-posts .banner {
+  background-color: #5d6d7e; /* Banner background color */
+  padding: 10px 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  top: -20px; /* Adjust to overlap the parent padding */
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* Featured Post Entry */
+.featured-posts .post-entry {
+  // border: 2px solid #007bff;
+  padding: 15px;
+  margin-bottom: 20px;
+  // border-radius: 8px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Featured Post Title */
+.featured-posts .post-title a {
+  font-size: 1.0em;
+  color: var(--heading-color);
+  font-weight: bold;
+}
+
+/* Featured Post Meta */
+.featured-posts .post-meta {
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
 .page,
 .post {
   font-family: var(--text-font);

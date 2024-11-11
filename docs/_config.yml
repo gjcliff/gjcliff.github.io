@@ -59,3 +59,10 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+
+defaults:
+  scope:
+    path: "" # empty string means all files
+    type: "posts"
+  values:
+    featured: false

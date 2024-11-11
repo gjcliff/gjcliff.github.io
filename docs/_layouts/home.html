@@ -4,61 +4,69 @@ layout: default
 
 {% include home-header.html %}
 
-<!-- <div class="projects">
-  {% for project in site.projects %}
-  <section class="project-entry">
-    <h2 class="project-title">
-      <a href="{{ project.url | relative_url }}">
-        {{ project.title }}
-      </a>
-    </h2>
-
-    <div class="project-meta">
-      <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date_to_string }}</time>
-      {%- if jekyll.environment == "production" and site.disqus -%}
-        <span> • </span>
-        <a class="comment-count" href="{{ project.url | relative_url }}#disqus_thread">
-          <span class="disqus-comment-count" data-disqus-url="{{ project.url | absolute_url }}"></span>
-        </a>
-      {%- endif -%}
+<!-- Featured Posts Section -->
+<div class="featured-posts">
+    <div class="banner">
+        <h1><i>Featured Posts</i></h1>
     </div>
+    <div class="featured-grid">
+    {% assign featured_posts = site.posts | where: "featured", true | slice: 0, 2 %}
+    {% for post in featured_posts %}
+    <section class="post-entry">
+      <div class="post-image">
+        <a href="{{ post.url | relative_url }}">
+          <img src="/public/cover_images/{{ post.image }}" alt="{{ post.title }}">
+        </a>
+      </div>
+      <div class="post-content">
+        <h2 class="post-title">
+          <a href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+        </h2>
 
-    <p>{{ project.excerpt | strip_html }}</p>
-  </section>
-  {% endfor %}
-  {%- if jekyll.environment == "production" and site.disqus -%}
-    <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>
-  {%- endif -%}
-</div> -->
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
+        </div>
+
+        <p>{{ post.excerpt | strip_html }}</p>
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+</div>
 
 <div class="posts">
+  {% assign featured_urls = featured_posts | map: "url" %}
   {% for post in paginator.posts %}
-  <section class="post-entry">
-    <div class="post-image">
-      <a href="{{ post.url | relative_url }}">
-        <img src="/public/cover_images/{{ post.image }}" alt="{{ post.title }}">
-      </a>
-    </div>
-    <div class="post-content">
-      <h2 class="post-title">
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      </h2>
-
-      <div class="post-meta">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-        {%- if jekyll.environment == "production" and site.disqus -%}
-          <span> • </span>
-          <a class="comment-count" href="{{ post.url | relative_url }}#disqus_thread">
-            <span class="disqus-comment-count" data-disqus-url="{{ post.url | absolute_url }}"></span>
+    {% unless featured_urls contains post.url %}
+      <section class="post-entry">
+        <div class="post-image">
+          <a href="{{ post.url | relative_url }}">
+            <img src="/public/cover_images/{{ post.image }}" alt="{{ post.title }}">
           </a>
-        {%- endif -%}
-      </div>
+        </div>
+        <div class="post-content">
+          <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a>
+          </h2>
 
-      <p>{{ post.excerpt | strip_html }}</p>
-    </div>
-  </section>
+          <div class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
+            {%- if jekyll.environment == "production" and site.disqus -%}
+              <span> • </span>
+              <a class="comment-count" href="{{ post.url | relative_url }}#disqus_thread">
+                <span class="disqus-comment-count" data-disqus-url="{{ post.url | absolute_url }}"></span>
+              </a>
+            {%- endif -%}
+          </div>
+
+          <p>{{ post.excerpt | strip_html }}</p>
+        </div>
+      </section>
+    {% endunless %}
   {% endfor %}
   {%- if jekyll.environment == "production" and site.disqus -%}
     <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>

@@ -5,6 +5,7 @@ date: March 19th, 2024
 image: slam_cover.png
 toc: true
 math: true
+featured: true
 ---
 
 This project implements SLAM from scratch on a turtlebot3 hamburger using wheel

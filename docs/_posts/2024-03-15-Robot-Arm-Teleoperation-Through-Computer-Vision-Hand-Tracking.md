@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Robot Arm Teleoperation Through Computer Vision Hand-Tracking
+title: Teleoperating a Robot Arm with Computer Vision
 date: March 15, 2024
 image: franka_combined.png
 toc: true
 math: true
+featured: true
 ---
 
 This project controls the Franka Emika Panda robot arm via teleoperation and computer vision.
