@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Semantic Mapping with RTABMap and ORB_SLAM3 for Localizing an Autonomous Wheelchair
+title: Semantic Mapping with RTABMap and ORB_SLAM3 for Localization and Navigation
 date: November 15th, 2024
 image: under_construction.png
 toc: true
@@ -11,11 +11,11 @@ featured: true
 This project implements semantic mapping in tandem with RTABMap and ORB_SLAM3
 to create occupancy grid maps and localize an autonomous wheelchair within them.
 
-I create two repositories for this project:
+I created two repositories for this project:
 - [ORB_SLAM3_ROS2](https://github.com/gjcliff/ORB_SLAM3_ROS2)
 - [RTABMap_Semantic_Mapping](https://github.com/gjcliff/RTABMap_Semantic_Mapping)
 
-And worked with researchers from the [argallab](https://github.com/argallab) to integrate my code with the LUCI
+I also worked with researchers from the [argallab](https://github.com/argallab) to integrate my code with the LUCI
 autonomous wheelchair.
 
 ## Table of Contents
@@ -61,9 +61,29 @@ and IMU data at 200Hz.
 
 ## Semantic Mapping
 After extracting and saving the information from the database, object detection
-is performed using a YOLOv8 model loaded into OpenCV C++'s DNN module. The
-detected objects are then projected onto the 3D point cloud to create a
-semantic map.
+is performed using a YOLOv8 model loaded into OpenCV C++'s DNN module at each
+pose in the camera's pose graph. Points from the 3D point cloud are projected
+onto the image plane using the iPhone's intrinsic camera matrix, and points that
+are within the bounding box of an object are assigned to and labeled with the
+object's class. Objects are represented by 3D point clouds, and the centroid
+of each point cloud is used to represent the object's position in the map.
+
+## Localization
+Adaptive Monte-Carlo Localization (AMCL) is used to localize the LUCI wheelchair
+in the semantic maps created by RTABMap and ORB_SLAM3. This strategy requires a
+2D lidar scan, a 2D occupancy grid map, and the initial pose of the robot in the
+map. The 2D lidar scan is created from the front right and front left infrared
+cameras on the LUCI wheelchair. The 3D point clouds from the infrared cameras
+are collapsed down and filtered into 2D lidar scans using the ROS2 package
+[pointcloud_to_laserscan](https://github.com/ros-perception/pointcloud_to_laserscan).
+
+## Navigation
+The LUCI wheelchair is navigated through the semantic maps using a ROS2 package
+created by alumni MSR student [Rintaroh Shima](https://www.linkedin.com/in/rintaroh-shima/). This package uses a user-friendly
+PyQt interface to allow the wheelchair operator to select a destination on the
+semantic map from a list of loaded landmarks. The wheelchair then navigates to
+the selected destination by sending an action-goal request to Nav2's controller
+server.
 
 ## How to Run
 
@@ -73,7 +93,14 @@ Please visit each project's github page for instructions on how to run the code.
 
 ## Results
 
+### RTABMap Semantic Mapping
+
+### ORB_SLAM3 Semantic Mapping
+
+### Localization and Navigation
+
 ## Future Work
+
 
 ## Acknowledgements
 
