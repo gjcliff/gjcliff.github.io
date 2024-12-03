@@ -2,7 +2,7 @@
 layout: post
 title: Localizing and Navigating inn Semantic Maps Created by RTABMap, ORB_SLAM3, and YOLOv8
 date: December 3rd, 2024
-image: localization_combined_20241202.gif
+image: orb_slam3_image_only.gif
 toc: true
 math: true
 featured: true
@@ -31,8 +31,6 @@ autonomous wheelchair.
 - [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
 
-
-![Localization](/public/Semantic_Mapping/localization_combined-20241125.gif)
 
 ## Implementation
 The two major components in this project are semantic mapping with a YOLOv8
@@ -72,6 +70,11 @@ the odom frame to the base_link frame. This package is designed to perform VIO
 SLAM with a RealSense D435i camera through a singular monocular image at 30Hz
 and IMU data at 200Hz.
 
+Here's what it looks like when actively mapping with ORB_SLAM3:
+<center>
+  <img src="/public/Semantic_Mapping/orb_slam3_rviz.gif" alt="ORB_SLAM3 Mapping" width="640"/>
+</center>
+
 ## Semantic Mapping
 After extracting and saving the information from the database, object detection
 is performed using a YOLOv8 model loaded into OpenCV C++'s DNN module at each
@@ -81,6 +84,8 @@ are within the bounding box of an object are assigned to and labeled with the
 object's class. Objects are represented by 3D point clouds, and the centroid
 of each point cloud is used to represent the object's position in the map.
 
+![pretty_cloud](/public/Semantic_Mapping/pretty_semantic_cloud.gif)
+
 ## Localization
 Adaptive Monte-Carlo Localization (AMCL) is used to localize the LUCI wheelchair
 in the semantic maps created by RTABMap and ORB_SLAM3. This strategy requires a
@@ -89,6 +94,8 @@ map. The 2D lidar scan is created from the front right and front left infrared
 cameras on the LUCI wheelchair. The 3D point clouds from the infrared cameras
 are collapsed down and filtered into 2D lidar scans using the ROS2 package
 [pointcloud_to_laserscan](https://github.com/ros-perception/pointcloud_to_laserscan).
+
+![Localization](/public/Semantic_Mapping/localization_combined-20241125.gif)
 
 ## Navigation
 The LUCI wheelchair is navigated through the semantic maps using a ROS2 package
