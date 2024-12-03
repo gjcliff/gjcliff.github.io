@@ -5,7 +5,7 @@ date: March 19th, 2024
 image: slam_cover.png
 toc: true
 math: true
-featured: true
+# featured: true
 ---
 
 This project implements SLAM from scratch on a turtlebot3 hamburger using wheel
@@ -72,7 +72,7 @@ data from the turtlebot and transforms it into joint states of the wheels, which
 are absolute measurements of how far the wheels have turned since the node started
 running, which are then sent to the odometry node.
 
-The **odometry** nodes receives these joint states from the turtlebot, and uses them to 
+The **odometry** nodes receives these joint states from the turtlebot, and uses them to
 figures out the left and right wheel velocity. These wheel velocities are then
 used to calculate a body twist of the robot for the current timestep using
 forward kinematics. This body twist is then integrated to produce an updated
@@ -98,9 +98,8 @@ and data association.
 EKF SLAM in the real world with unknown data association and circular regression:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HyAhQ1MOPjE?si=2DXvevmM8yIqDphF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-EKF SLAM with unknown data association and circular regression:  
+EKF SLAM with unknown data association and circular regression:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B4iBtdST0zI?si=YTuaZNBG4CpbqJ0D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-EKF SLAM with simulated landmark positions:  
+EKF SLAM with simulated landmark positions:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SA2kviWRW3M?si=uzDI45YVCwwfVhLB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-

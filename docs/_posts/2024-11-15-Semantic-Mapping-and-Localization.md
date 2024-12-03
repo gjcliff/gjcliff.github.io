@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Semantic Mapping with RTABMap and ORB_SLAM3 for Localization and Navigation
-date: November 15th, 2024
-image: under_construction.png
+date: December 3rd, 2024
+image: localization_combined_20241202.gif
 toc: true
 math: true
 featured: true
@@ -10,6 +10,8 @@ featured: true
 
 This project implements semantic mapping in tandem with RTABMap and ORB_SLAM3
 to create occupancy grid maps and localize an autonomous wheelchair within them.
+
+![localization-20241202](/public/Semantic_Mapping/localization_combined_20241202.gif)
 
 I created two repositories for this project:
 - [ORB_SLAM3_ROS2](https://github.com/gjcliff/ORB_SLAM3_ROS2)
@@ -27,6 +29,10 @@ autonomous wheelchair.
 - [Results](#results)
 - [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
+
+**Post under construction, please check back on December 11th, 2024 for the complete post.**
+
+![Localization](/public/Semantic_Mapping/localization_combined-20241125.gif)
 
 ## Implementation
 The two major components in this project are semantic mapping with a YOLOv8
@@ -50,6 +56,10 @@ SLAM. The depth images are created by using the iPhone's intrinsic camera matrix
 to project points in the 3D point cloud onto the image plane at each step in the
 camera's pose graph. Pixel information from the RGB image is also used to give
 color to the 3D point cloud.
+
+Here's an example of what it looks like to overlay points from the point cloud
+onto an image:
+![Emulated Depth](/public/Semantic_Mapping/rgb_vs_emulated_depth.gif)
 
 ## ORB_SLAM3
 For ORB_SLAM3, I created a ROS2 Humble package that performs visual-inertial

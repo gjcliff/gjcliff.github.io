@@ -6,6 +6,7 @@ image: franka_combined.png
 toc: true
 math: true
 featured: true
+repo: gjcliff/FrankaTeleop
 ---
 
 This project controls the Franka Emika Panda robot arm via teleoperation and computer vision.
@@ -14,7 +15,7 @@ This project controls the Franka Emika Panda robot arm via teleoperation and com
 
 To see a full length video demonstration, head over to the [Gallery](#gallery) section.
 
-## [Link to this project's Github](https://github.com/gjcliff/FrankaTeleop)
+## [Link to this project's Github](https://github.com/gjcliff/FrankaTeleop) - ![GitHub Repo stars](https://img.shields.io/github/stars/gjcliff/FrankaTeleop?style=social)
 
 ## Introduction
 The system is composed of three main nodes: handcv, cv_franka_bridge, and franka_teleop.
@@ -61,21 +62,21 @@ If you'd like to see a demonstration of these gestures, you can watch the youtub
 video the [Gallery](#gallery) section.
 
 ## Lessons Learned
-**Integrating MoveIt and Franka**  
+**Integrating MoveIt and Franka**
 I spent a lot of time integrating the franka robot with moveit. The launch files,
 URDFs, and SRDF files distributed by Franka themselves were not compatible with
 any of the MoveIt tutorials on moveit_cpp or moveit_servo, both of which I wanted
 to get working. I ended up having to modify many of the configuration files provided
 by Franka by hand to get everything to work. This was a great way to learn in-depth
-about getting a robot setup and integrated wth moveit.  
-**Teleoperating a Robot**  
+about getting a robot setup and integrated wth moveit.
+**Teleoperating a Robot**
 I wasn't sure how to go about achieving teleoperation at first. I ended up deciding
 on a PD control loop, where the difference between the desired position of the
 end effector and the current position of the end effector is used to calculate
 the magnitude of a linear output vector which tells the robot how to move at
 each time step. I also learned that when using the moveit_servo package the
 robot joints tend to drift, so I had to enforce both the 3D position of the
-end effector that I wanted as well as the orientation that I wanted at every 
+end effector that I wanted as well as the orientation that I wanted at every
 time step.
 
 ## Future Work
