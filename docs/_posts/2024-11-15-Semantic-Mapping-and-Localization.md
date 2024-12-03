@@ -7,6 +7,7 @@ toc: true
 math: true
 featured: true
 ---
+**Post under construction, please check back on December 11th, 2024 for the complete post.**
 
 This project implements semantic mapping in tandem with RTABMap and ORB_SLAM3
 to create occupancy grid maps and localize an autonomous wheelchair within them.
@@ -30,7 +31,6 @@ autonomous wheelchair.
 - [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
 
-**Post under construction, please check back on December 11th, 2024 for the complete post.**
 
 ![Localization](/public/Semantic_Mapping/localization_combined-20241125.gif)
 
