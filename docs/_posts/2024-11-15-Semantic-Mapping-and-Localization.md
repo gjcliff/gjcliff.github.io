@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Semantic Mapping with RTABMap and ORB_SLAM3 for Localization and Navigation
+title: Localizing and Navigating inn Semantic Maps Created by RTABMap, ORB_SLAM3, and YOLOv8
 date: December 3rd, 2024
 image: localization_combined_20241202.gif
 toc: true
