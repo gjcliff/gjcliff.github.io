@@ -59,7 +59,10 @@ color to the 3D point cloud.
 
 Here's an example of what it looks like to overlay points from the point cloud
 onto an image:
-![Emulated Depth](/public/Semantic_Mapping/rgb_vs_emulated_depth.gif)
+<center>
+  <img src="/public/Semantic_Mapping/rgb_vs_emulated_depth.gif" alt="Emulated Depth" width="400"/>
+</center>
+<!-- ![Emulated Depth](/public/Semantic_Mapping/rgb_vs_emulated_depth.gif) -->
 
 ## ORB_SLAM3
 For ORB_SLAM3, I created a ROS2 Humble package that performs visual-inertial
