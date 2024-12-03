@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Localizing and Navigating inn Semantic Maps Created by RTABMap, ORB_SLAM3, and YOLOv8
+title: Localizing and Navigating in Semantic Maps Created by RTABMap, ORB_SLAM3, and YOLOv8
 date: December 3rd, 2024
 image: orb_slam3_image_only.gif
 toc: true
