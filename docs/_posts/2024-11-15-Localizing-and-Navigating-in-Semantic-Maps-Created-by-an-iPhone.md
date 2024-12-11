@@ -45,8 +45,8 @@ the wheelchair in the map.
 
 ## Mapping on the iPhone
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
-  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" style="height: 300px; object-fit: cover; max-width: 100%;"/>
-  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" style="height: 300px; object-fit: cover; max-width: 100%;"/>
+  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" style="height: 500px; object-fit: cover; max-width: 100%;"/>
+  <img src="/public/Semantic_Mapping/iphone_point_cloud-20241210.gif" alt="cloud" style="height: 500px; object-fit: cover; max-width: 100%;"/>
 </div>
 
 <style>

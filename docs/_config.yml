@@ -40,7 +40,8 @@ plugins:
 
 google_analytics: G-RT7CVF8GLG
 
-cover_image: /shirley_daytime.JPG
+# cover_image: /shirley_daytime.JPG
+cover_image: /public/cover_images/chicago_river.jpeg
 avatar: /2edited_low_qual.jpg
 paginate: 10
 permalink: "/:title/"
