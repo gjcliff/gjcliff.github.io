@@ -2,7 +2,7 @@
 layout: post
 title: Rapidly-Exploring Random Tree (RRT) Path Planning
 date: December 23rd, 2023
-image: new_rrt_cover.png
+image: rrt_new.gif
 toc:  true
 math: true
 tags: [python, algorithm, robotics, path planning]
@@ -53,27 +53,27 @@ The algorithm, as presented below, has been simplified from the original version
 ### **Overview**
 Here is some pseudocode that generally represents the RRT algorithm:
 
-**Input:**  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{init} \leftarrow\\\) The initial node  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{goal} \leftarrow\\\) The known position of the goal  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(K \leftarrow\\\) The number of nodes in RRT  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(\Delta \leftarrow\\\) Incremental distance  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(D \leftarrow\\\) The planning domain  
-**Output:**  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(G \leftarrow\\\) the RRT  
+**Input:**
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{init} \leftarrow\\\) The initial node
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{goal} \leftarrow\\\) The known position of the goal
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(K \leftarrow\\\) The number of nodes in RRT
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(\Delta \leftarrow\\\) Incremental distance
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(D \leftarrow\\\) The planning domain
+**Output:**
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(G \leftarrow\\\) the RRT
 
-**Algorithm:**  
-Initialize \\\(G\\\) with \\\(q_{init}\\\)  
-Initialize obstacle(s) with \\\(q_{init}\\\)  
-**repeat \\\(K\\\) times**  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{rand} \leftarrow\\\) RANDOM_CONFIGURATION(D)  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{near} \leftarrow\\\) NEAREST_VERTEX(\\\(q_{rand}, G\\\))  
-&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{new} \leftarrow\\\) NEW_CONFIGURATION(\\\(q_{near}, q_{rand}, \Delta\\\))  
-&nbsp;&nbsp;&nbsp;&nbsp;Check if \\\(q_{new}\\\) collides with an obstacle  
-&nbsp;&nbsp;&nbsp;&nbsp;Add vertex \\\(q_{new}\\\) to \\\(G\\\)  
-&nbsp;&nbsp;&nbsp;&nbsp;Add an edge between \\\(q_{near}\\\) and \\\(q_{new}\\\) in \\\(G\\\)  
-&nbsp;&nbsp;&nbsp;&nbsp;Check if \\\(q_{new}\\\) can see the goal  
-**end repeat**  
+**Algorithm:**
+Initialize \\\(G\\\) with \\\(q_{init}\\\)
+Initialize obstacle(s) with \\\(q_{init}\\\)
+**repeat \\\(K\\\) times**
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{rand} \leftarrow\\\) RANDOM_CONFIGURATION(D)
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{near} \leftarrow\\\) NEAREST_VERTEX(\\\(q_{rand}, G\\\))
+&nbsp;&nbsp;&nbsp;&nbsp;\\\(q_{new} \leftarrow\\\) NEW_CONFIGURATION(\\\(q_{near}, q_{rand}, \Delta\\\))
+&nbsp;&nbsp;&nbsp;&nbsp;Check if \\\(q_{new}\\\) collides with an obstacle
+&nbsp;&nbsp;&nbsp;&nbsp;Add vertex \\\(q_{new}\\\) to \\\(G\\\)
+&nbsp;&nbsp;&nbsp;&nbsp;Add an edge between \\\(q_{near}\\\) and \\\(q_{new}\\\) in \\\(G\\\)
+&nbsp;&nbsp;&nbsp;&nbsp;Check if \\\(q_{new}\\\) can see the goal
+**end repeat**
 **return \\\(G\\\)**
 
 ### **Results**
@@ -90,4 +90,3 @@ Here is an image of what the algorithm looks like after it has finished executin
 And here is an image of what the algorithm looks like after it has finished executing mode 1:
 
 ![placeholder](/public/RRT_images/final_circle.png)
-

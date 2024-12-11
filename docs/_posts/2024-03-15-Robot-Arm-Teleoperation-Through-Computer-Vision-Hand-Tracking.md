@@ -2,20 +2,25 @@
 layout: post
 title: Teleoperating a Robot Arm with Computer Vision
 date: March 15, 2024
-image: franka_combined.png
+image: full_final_demo_cut_cropped.gif
 toc: true
 math: true
 featured: true
 repo: gjcliff/FrankaTeleop
+tags: [cpp, python, ros2, moveit, robotics, computer vision, machine learning]
 ---
 
 This project controls the Franka Emika Panda robot arm via teleoperation and computer vision.
 
-![franka_servo gif](/public/Franka-Teleop/franka_servo.gif)
+<!-- ![franka_servo gif](/public/Franka-Teleop/full_final_demo_cut.gif) -->
+<center>
+<img src="/public/Franka-Teleop/full_final_demo_cut.gif" alt="combined sequence" width="1000"/>
+</center>
 
 To see a full length video demonstration, head over to the [Gallery](#gallery) section.
 
-## [Link to this project's Github](https://github.com/gjcliff/FrankaTeleop) - ![GitHub Repo stars](https://img.shields.io/github/stars/gjcliff/FrankaTeleop?style=social)
+[Link to this project's Github](https://github.com/gjcliff/FrankaTeleop)
+![GitHub Repo stars](https://img.shields.io/github/stars/gjcliff/FrankaTeleop?style=social)
 
 ## Introduction
 The system is composed of three main nodes: handcv, cv_franka_bridge, and franka_teleop.
@@ -100,4 +105,6 @@ The features that I would most like to add to this project are:
     would be a great opportunity to do so.
 
 ## Gallery
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6R6WPQre0Jg?si=jX77sXLAA7iwiiMV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<center>
+<iframe width="650" height="315" src="https://www.youtube.com/embed/6R6WPQre0Jg?si=jX77sXLAA7iwiiMV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>

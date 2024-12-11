@@ -2,10 +2,11 @@
 layout: post
 title: SLAM From Scratch
 date: March 19th, 2024
-image: slam_cover.png
+image: slam_unknown_good.gif
 toc: true
 math: true
 # featured: true
+tags: [cpp, ros2, slam, navigation, lidar, machine learning, kalman filter]
 ---
 
 This project implements SLAM from scratch on a turtlebot3 hamburger using wheel

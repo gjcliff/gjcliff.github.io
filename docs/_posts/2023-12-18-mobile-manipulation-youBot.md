@@ -2,7 +2,7 @@
 layout: post
 title: Feedforward Plus Feedback Control for Mobile Manipulation With the youBot
 date: December 23rd, 2023
-image: mm_cover.png
+image: youbot_cover.gif
 toc: true
 math: true
 tags: [python, modern_robotics, robotics, path planning, control theory]
@@ -23,7 +23,7 @@ The final output of the script is a csv text file that specifies the configurati
 
 CoppeliaSim can be installed [here](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator), and the necessary scenes for "playing" the csv files can be downloaded [here](https://hades.mech.northwestern.edu/index.php/CoppeliaSim_Introduction).
 
-In the terminal, navigate to the trajectory_generation.py file inside the /code/ directory of this repository. To run the file, execute the following command:  
+In the terminal, navigate to the trajectory_generation.py file inside the /code/ directory of this repository. To run the file, execute the following command:
 ```
 python3 trajectory_generation.py
 ```
@@ -41,7 +41,7 @@ The image below illustrate the youBot at its home configuration:
 
 In this project, we assuume no joint limits on the five joints of the robot arm.
 
-A trajectory for the youBot is made up of thirteen elements. These thirteen elements are:  
+A trajectory for the youBot is made up of thirteen elements. These thirteen elements are:
 - Chassis \\\(\phi\\\)
 - Chassis x
 - Chassis y
