@@ -8,7 +8,7 @@ math: true
 featured: true
 ---
 This project creates semantic maps from iPhone data and uses Adaptive Monte-Carlo
-Localization (AMCL) to localize an autonomous wheelchair within these maps.
+Localization (AMCL) to localize an autonomous wheelchair within them.
 
 Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_Mapping).
 
