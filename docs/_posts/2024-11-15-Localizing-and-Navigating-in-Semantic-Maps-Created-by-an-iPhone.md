@@ -92,6 +92,10 @@ We're solving for the pixel coordinates of the point, u and v.
 
 ![camera_matrix](/public/Semantic_Mapping/camera_matrix.jpg)
 
+Since the point from the point cloud we're considering is transformed into the
+camera frame, the extrinsic matrix is the identity matrix and the scalar "s" is
+1.
+
 Here's what it looks like when all images are put together in sequence:
 <center>
   <img src="/public/Semantic_Mapping/combined_sequence.gif" alt="combined sequence" width="600"/>
