@@ -2,17 +2,13 @@
 layout: post
 title: Localizing and Navigating in Semantic Maps Created by an iPhone
 date: December 10th, 2024
-image: localization_combined_cut-20241210.gif
+image: combined_sequence.gif
 toc: true
 math: true
 featured: true
 ---
-**Post under construction, please check back on December 11th, 2024 for the complete post.**
-
 This project creates semantic maps from iPhone data and uses Adaptive Monte-Carlo
 Localization (AMCL) to localize an autonomous wheelchair within these maps.
-
-<!-- ![localization-20241202](/public/Semantic_Mapping/localization_combined_cut-20241210.gif) -->
 
 Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_Mapping).
 ## Table of Contents
@@ -44,13 +40,10 @@ right and front left cameras, and is combined with wheel odometry to localize
 the wheelchair in the map.
 
 ## RTABMap
-<!-- ![rtabmap_iphone](/public/Semantic_Mapping/rtabmap_iphone_cut.gif) ![cloud](/public/Semantic_Mapping/pretty_cloud_no_labels.gif) -->
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" height="400"/>
-  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" height="400"/>
+  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" height="300"/>
+  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" height="300"/>
 </div>
-
-<br>
 I used the RTABMap iPhone app to allow users to create maps of their environment.
 This application is robust, easy to use, and runs very smoothly. Sideloadable
 verions of this app are available for Android. I created a dockerfile that
@@ -150,7 +143,20 @@ it's state as of 12-05-2024:
 ![navigation](/public/Semantic_Mapping/nav_combined-20241205.gif)
 
 ## Future Work
-
+There are multiple possible areas of future work for this project.
+* **Create Manual Labeling Tool**: A tool that allows users to manually label
+  objects in the semantic map would be useful for editing the labels of objects
+  detected by the YOLOv8 model, and the addition of custom landmarks. I am actively
+  working on this tool, and it will be complete before 12-20-2024.
+* **Improve Object Detection**: The YOLOv8 model used for object detection is
+  simply one of the default models, yolov8m. It would be beneficial to build
+  on this model and train it to recognize additional common household objects.
+* **Improve Localization**: The localization system could be improved by using
+  further tuning of the AMCL parameters. It is also possible to use RTABMap for
+  localization on the wheelchair, and localize directly in the maps created by
+  the iPhone.
+* **Improve Navigation**: The navigation system could be improved by performing
+  additional tuning of the Nav2 parameters.
 
 ## Acknowledgements
 
