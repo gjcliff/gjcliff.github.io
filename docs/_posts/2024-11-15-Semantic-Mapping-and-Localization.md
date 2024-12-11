@@ -1,78 +1,91 @@
 ---
 layout: post
-title: Localizing and Navigating in Semantic Maps Created by RTABMap, ORB_SLAM3, and YOLOv8
-date: December 3rd, 2024
-image: orb_slam3_image_only.gif
+title: Localizing and Navigating in Semantic Maps Created by an iPhone
+date: December 10th, 2024
+image: localization_combined_cut-20241210.gif
 toc: true
 math: true
 featured: true
 ---
 **Post under construction, please check back on December 11th, 2024 for the complete post.**
 
-This project implements semantic mapping in tandem with RTABMap and ORB_SLAM3
-to create occupancy grid maps and localize an autonomous wheelchair within them.
+This project creates semantic maps from iPhone data and uses Adaptive Monte-Carlo
+Localization (AMCL) to localize an autonomous wheelchair within these maps.
 
-![localization-20241202](/public/Semantic_Mapping/localization_combined_20241202.gif)
+<!-- ![localization-20241202](/public/Semantic_Mapping/localization_combined_cut-20241210.gif) -->
 
-I created two repositories for this project:
-- [ORB_SLAM3_ROS2](https://github.com/gjcliff/ORB_SLAM3_ROS2)
-- [RTABMap_Semantic_Mapping](https://github.com/gjcliff/RTABMap_Semantic_Mapping)
-
-I also worked with researchers from the [argallab](https://github.com/argallab) to integrate my code with the LUCI
-autonomous wheelchair.
-
+Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_Mapping).
 ## Table of Contents
-- [Implementation](#implementation)
-- [RTABMap](#rtabmap)
-- [ORB_SLAM3](#orb-slam3)
+- [Introduction](#introduction)
+- [Mapping on the iPhone](#mapping-on-the-iphone)
+- [Post-Processing Data from the iPhone](#post-processing-data-from-the-iphone)
 - [Semantic Mapping](#semantic-mapping)
-- [How to Run](#how-to-run)
-- [Results](#results)
+- [Localization](#localization)
+- [Navigation](#navigation)
 - [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
 
+## Introduction
+The motivation behind this project is to support users of the [LUCI autonomous
+wheelchair](https://luci.com/). The idea is to have a friend or caretaker use their cellphone to
+create an accurate semantic map of their home or a public space. The wheelchair
+can then use this map to navigate to different locations within the space. For
+example, if a user wanted to go to the kitchen, they could select the kitchen
+on the map, and the wheelchair would navigate to that location autonomously.
 
-## Implementation
-The two major components in this project are semantic mapping with a YOLOv8
-model and localization with Adaptive Monte-Carlo Localization (AMCL).
-
-I provide two methods for semantic mapping: ORB_SLAM3 and RTABMap. The main
-difference between the two methods is the data capture device.
-
-Both packages can either be run in a docker container for ease of use or built
-from source on your host system.
+I focused mainly on creating the semantic maps from the iPhone, and localizing
+the wheelchair within these maps using Adaptive Monte-Carlo Localization (AMC)
+localization. The main challenge was to be able to localize with sensors that
+are different from the ones used to create the map. The LUCI wheelchair has
+numerous sensors including three Realsense RGBD cameras which each provide an
+accurate infrared 3D point cloud and wheel encoders which are used to provide
+odometry. A 2D lidar scan is generated from the 3D point clouds from the front
+right and front left cameras, and is combined with wheel odometry to localize
+the wheelchair in the map.
 
 ## RTABMap
-For RTABMap, I created a CMake package that processes the information from
-saved RTABMap database files to obtain a 3D point cloud in PCL format, RGB
-images, depth images, and camera calibration information. This package is
-specifically designed to process database files created by the RTABMap iPhone
-app without LIDAR.
+<!-- ![rtabmap_iphone](/public/Semantic_Mapping/rtabmap_iphone_cut.gif) ![cloud](/public/Semantic_Mapping/pretty_cloud_no_labels.gif) -->
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" height="400"/>
+  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" height="400"/>
+</div>
+
+<br>
+I used the RTABMap iPhone app to allow users to create maps of their environment.
+This application is robust, easy to use, and runs very smoothly. Sideloadable
+verions of this app are available for Android. I created a dockerfile that
+builds a CMake package I wrote to process the information from saved RTABMap
+database files to obtain a 3D point cloud in PCL format, RGB images, depth
+images, and camera calibration information. This package is specifically
+designed to process database files created by the RTABMap iPhone app without
+LIDAR. Databases created using LIDAR can successfully be processed, however it
+is much slower. Using LIDAR with the RTABMap iPhone app creates a 3D mesh of the
+environment, and eventually I will add support for using and visualizing this
+3D mesh.
 
 RTABMap itself only produces the 3D point cloud and the RGB images through VIO
-SLAM. The depth images are created by using the iPhone's intrinsic camera matrix
+SLAM. I create the depth images by using the iPhone's intrinsic camera matrix
 to project points in the 3D point cloud onto the image plane at each step in the
 camera's pose graph. Pixel information from the RGB image is also used to give
-color to the 3D point cloud.
+color to the 3D point cloud. Below is some pseudo-code that shows the math behind
+this process:
+```cpp
+std::map<std::pair<int,int>, int> map
+for point in point_cloud:
+	p_transform = point * Tcw.inverse()
+	x_coord = (f_x * p_x) / p_z + c_x
+	y_coord = (f_y * p_y) / p_z + c_y
+	if in_bounds(x_coord) && in_bounds(y_coord):
+		map[{x_coord, y_coord}] = point_index
+```
+We're solving for the pixel coordinates of the point, u and v.
 
-Here's an example of what it looks like to overlay points from the point cloud
-onto an image:
+![camera_matrix](/public/Semantic_Mapping/camera_matrix.jpg)
+
+
+Here's what it looks like when all images are put together in sequence:
 <center>
-  <img src="/public/Semantic_Mapping/rgb_vs_emulated_depth.gif" alt="Emulated Depth" width="400"/>
-</center>
-<!-- ![Emulated Depth](/public/Semantic_Mapping/rgb_vs_emulated_depth.gif) -->
-
-## ORB_SLAM3
-For ORB_SLAM3, I created a ROS2 Humble package that performs visual-inertial
-odometry (VIO) SLAM in real-time and publishes PointCloud2, OccupancyGrid,
-Odometry, and Pose-Array messages. I also publish the dynamic transform from
-the odom frame to the base_link frame. This package is designed to perform VIO
-SLAM with a RealSense D435i camera through a singular monocular image at 30Hz
-and IMU data at 200Hz.
-
-Here's what it looks like when actively mapping with ORB_SLAM3:
-<center>
-  <img src="/public/Semantic_Mapping/orb_slam3_rviz.gif" alt="ORB_SLAM3 Mapping" width="640"/>
+  <img src="/public/Semantic_Mapping/combined_sequence.gif" alt="combined sequence" width="600"/>
 </center>
 
 ## Semantic Mapping
@@ -81,47 +94,65 @@ is performed using a YOLOv8 model loaded into OpenCV C++'s DNN module at each
 pose in the camera's pose graph. Points from the 3D point cloud are projected
 onto the image plane using the iPhone's intrinsic camera matrix, and points that
 are within the bounding box of an object are assigned to and labeled with the
-object's class. Objects are represented by 3D point clouds, and the centroid
+object's class.
+
+![flowchart](/public/Semantic_Mapping/postprocessing_flowchart.png)
+
+Objects are represented by 3D point clouds, and the centroid
 of each point cloud is used to represent the object's position in the map.
 
-![pretty_cloud](/public/Semantic_Mapping/pretty_semantic_cloud.gif)
+<center>
+  <img src="/public/Semantic_Mapping/pretty_semantic_cloud.gif" alt="combined sequence" width="1000"/>
+</center>
 
 ## Localization
 Adaptive Monte-Carlo Localization (AMCL) is used to localize the LUCI wheelchair
-in the semantic maps created by RTABMap and ORB_SLAM3. This strategy requires a
-2D lidar scan, a 2D occupancy grid map, and the initial pose of the robot in the
-map. The 2D lidar scan is created from the front right and front left infrared
-cameras on the LUCI wheelchair. The 3D point clouds from the infrared cameras
-are collapsed down and filtered into 2D lidar scans using the ROS2 package
-[pointcloud_to_laserscan](https://github.com/ros-perception/pointcloud_to_laserscan).
+in the semantic maps. This strategy requires a 2D lidar scan, a 2D occupancy
+grid map, odometry, and the initial pose of the robot in the map.
 
-![Localization](/public/Semantic_Mapping/localization_combined-20241125.gif)
+The 2D lidar scan is created from the front right and front left infrared cameras on the
+LUCI wheelchair. The 3D point clouds from the infrared cameras are collapsed
+down and filtered into 2D lidar scans using the ROS2 package [pointcloud_to_laserscan](https://github.com/ros-perception/pointcloud_to_laserscan).
+
+The 2D occupancy grid map is created from the semantic map that we created with
+the dockerized CMake package. It's the result of running a couple different
+filters on the 3D point cloud (statistical outlier removal, radius outlier removal,
+voxel grid downsampling, and passthrough filtering) and then projecting the
+points onto a 2D grid.
+
+The odometry is created from the wheel encoders on the LUCI wheelchair. The
+wheel encoders are used to calculate the distance the wheelchair has traveled
+and the angle it has turned. This information is used to update the robot's
+transform from the "odom" frame to the "base_link" frame, which is required by
+AMCL and [ROS REP 105](https://www.ros.org/reps/rep-0105.html).
+
+<center>
+  <img src="/public/Semantic_Mapping/localization_combined_cut-20241210.gif" alt="combined sequence" width="1000"/>
+</center>
 
 ## Navigation
-The LUCI wheelchair is navigated through the semantic maps using a ROS2 package
-created by alumni MSR student [Rintaroh Shima](https://www.linkedin.com/in/rintaroh-shima/). This package uses a user-friendly
-PyQt interface to allow the wheelchair operator to select a destination on the
-semantic map from a list of loaded landmarks. The wheelchair then navigates to
-the selected destination by sending an action-goal request to Nav2's controller
-server.
+The LUCI wheelchair is navigated through the semantic maps using the ROS2 package
+Nav2. Landmarks detected in the semantic mapping stage are display on the map
+within RVIZ, and navigation goals are set by placing them manually on the map
+within RVIZ.
 
-## How to Run
+This package integrates with the final project of another student, [Rintaroh
+Shima](https://r-shima.github.io/). Landmarks discovered during semantic mapping can be loaded into his
+PyQt GUI application on a tablet, and the tablet can be used to set navigation
+goals for the wheelchair. His package also allows for the creation of new landmarks
+by performing object recognition with the cameras on the wheelchair durinig
+localization. You can learn more and watch a demo of his package
+[here](https://r-shima.github.io/semantic-mapping/).
 
-Please visit each project's github page for instructions on how to run the code.
-* [RTABMap Semantic Mapping](https://github.com/gjcliff/RTABMap_Semantic_Mapping)
-* [ORB_SLAM3 ROS2](https://github.com/gjcliff/ORB_SLAM3_ROS2)
+Further work is needed to refine the navigation system. Here's an example of
+it's state as of 12-05-2024:
 
-## Results
-
-### RTABMap Semantic Mapping
-
-### ORB_SLAM3 Semantic Mapping
-
-### Localization and Navigation
+![navigation](/public/Semantic_Mapping/nav_combined-20241205.gif)
 
 ## Future Work
 
 
 ## Acknowledgements
 
-Thank you to Larisa, Joel, Matt, and Professor Argall for their help and guidance on this project.
+Thank you to Professor Argall, Matt, Larisa, Joel, Demiana, Fiona, and Andrew
+for their help and guidance on this project.
