@@ -11,6 +11,11 @@ This project creates semantic maps from iPhone data and uses Adaptive Monte-Carl
 Localization (AMCL) to localize an autonomous wheelchair within these maps.
 
 Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_Mapping).
+
+<center>
+  <img src="/public/Semantic_Mapping/localization_combined_sped_up_cut-20241210.gif" alt="combined sequence" width="1000"/>
+</center>
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Mapping on the iPhone](#mapping-on-the-iphone)
@@ -120,7 +125,7 @@ transform from the "odom" frame to the "base_link" frame, which is required by
 AMCL and [ROS REP 105](https://www.ros.org/reps/rep-0105.html).
 
 <center>
-  <img src="/public/Semantic_Mapping/localization_combined_cut-20241210.gif" alt="combined sequence" width="1000"/>
+  <img src="/public/Semantic_Mapping/localization_combined_sped_up_cut-20241210.gif" alt="combined sequence" width="1000"/>
 </center>
 
 ## Navigation
