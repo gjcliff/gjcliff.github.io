@@ -18,33 +18,33 @@ Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_M
 </center>
 
 ## Table of Contents
-    - [Introduction](#introduction)
-    - [Mapping on the iPhone](#mapping-on-the-iphone)
-    - [Semantic Mapping](#semantic-mapping)
-    - [Localization](#localization)
-    - [Navigation](#navigation)
-    - [Future Work](#future-work)
+- [Introduction](#introduction)
+- [Mapping on the iPhone](#mapping-on-the-iphone)
+- [Semantic Mapping](#semantic-mapping)
+- [Localization](#localization)
+- [Navigation](#navigation)
+- [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
 
 ## Introduction
-    The motivation behind this project is to support users of the [LUCI autonomous
-    wheelchair](https://luci.com/). The idea is to have a friend or caretaker use their cellphone to
-    create an accurate semantic map of their home or a public space. The wheelchair
-    can then use this map to navigate to different locations within the space. For
-    example, if a user wanted to go to the kitchen, they could select the kitchen
-    on the map, and the wheelchair would navigate to that location autonomously.
+The motivation behind this project is to support users of the [LUCI autonomous
+wheelchair](https://luci.com/). The idea is to have a friend or caretaker use their cellphone to
+create an accurate semantic map of their home or a public space. The wheelchair
+can then use this map to navigate to different locations within the space. For
+example, if a user wanted to go to the kitchen, they could select the kitchen
+on the map, and the wheelchair would navigate to that location autonomously.
 
-    I focused mainly on creating the semantic maps from the iPhone, and localizing
+I focused mainly on creating the semantic maps from the iPhone, and localizing
 the wheelchair within these maps using Adaptive Monte-Carlo Localization (AMC)
-    localization. The main challenge was to be able to localize with sensors that
-    are different from the ones used to create the map. The LUCI wheelchair is a power
-    wheelchair with a sensor stacking including three Realsense RGBD cameras which
-    each provide an accurate infrared 3D point cloud and wheel encoders which are
-    used to provide odometry. A 2D lidar scan is generated from the 3D point
-    clouds from the front right and front left camera, and is combined with wheel
-    odometry to localize the wheelchair in the map.
+localization. The main challenge was to be able to localize with sensors that
+are different from the ones used to create the map. The LUCI wheelchair is a power
+wheelchair with a sensor stacking including three Realsense RGBD cameras which
+each provide an accurate infrared 3D point cloud and wheel encoders which are
+used to provide odometry. A 2D lidar scan is generated from the 3D point
+clouds from the front right and front left camera, and is combined with wheel
+odometry to localize the wheelchair in the map.
 
-    Below is a high level visualization of the project's flowchart:
+Below is a high level visualization of the project's flowchart:
 
 ![high level](/public/Semantic_Mapping/high_level_flowchart.png)
 
