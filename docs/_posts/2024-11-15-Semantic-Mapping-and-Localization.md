@@ -19,7 +19,6 @@ Visit this project's Github [here](https://github.com/gjcliff/RTABMap_Semantic_M
 ## Table of Contents
 - [Introduction](#introduction)
 - [Mapping on the iPhone](#mapping-on-the-iphone)
-- [Post-Processing Data from the iPhone](#post-processing-data-from-the-iphone)
 - [Semantic Mapping](#semantic-mapping)
 - [Localization](#localization)
 - [Navigation](#navigation)
@@ -44,7 +43,7 @@ odometry. A 2D lidar scan is generated from the 3D point clouds from the front
 right and front left cameras, and is combined with wheel odometry to localize
 the wheelchair in the map.
 
-## RTABMap
+## Mapping on the iPhone
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
   <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" height="300"/>
   <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" height="300"/>
@@ -79,7 +78,6 @@ for point in point_cloud:
 We're solving for the pixel coordinates of the point, u and v.
 
 ![camera_matrix](/public/Semantic_Mapping/camera_matrix.jpg)
-
 
 Here's what it looks like when all images are put together in sequence:
 <center>
