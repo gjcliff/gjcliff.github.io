@@ -44,9 +44,9 @@ right and front left cameras, and is combined with wheel odometry to localize
 the wheelchair in the map.
 
 ## Mapping on the iPhone
-<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" height="300"/>
-  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" height="300"/>
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+  <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" style="height: 300px; object-fit: cover;"/>
+  <img src="/public/Semantic_Mapping/pretty_cloud_no_labels.gif" alt="cloud" style="height: 300px; object-fit: cover;"/>
 </div>
 I used the RTABMap iPhone app to allow users to create maps of their environment.
 This application is robust, easy to use, and runs very smoothly. Sideloadable
