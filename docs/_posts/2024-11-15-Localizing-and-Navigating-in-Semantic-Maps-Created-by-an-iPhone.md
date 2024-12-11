@@ -43,6 +43,10 @@ odometry. A 2D lidar scan is generated from the 3D point clouds from the front
 right and front left cameras, and is combined with wheel odometry to localize
 the wheelchair in the map.
 
+Below is a high level visualization of the project's flowchart:
+
+![high level](/public/Semantic_Mapping/high_level_flowchart.png)
+
 ## Mapping on the iPhone
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
   <img src="/public/Semantic_Mapping/rtabmap_iphone_cut.gif" alt="rtabmap_iphone" style="height: 500px; object-fit: cover; max-width: 100%;"/>
