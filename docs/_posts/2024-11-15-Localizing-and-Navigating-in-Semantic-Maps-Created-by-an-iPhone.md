@@ -35,7 +35,7 @@ example, if a user wanted to go to the kitchen, they could select the kitchen
 on the map, and the wheelchair would navigate to that location autonomously.
 
 I focused mainly on creating the semantic maps from the iPhone, and localizing
-the wheelchair within these maps using Adaptive Monte-Carlo Localization (AMC)
+the wheelchair within these maps using Adaptive Monte-Carlo Localization (AMCL)
 localization. The main challenge was to be able to localize with sensors that
 are different from the ones used to create the map. The LUCI wheelchair is a power
 wheelchair with a sensor stacking including three Realsense RGBD cameras which
