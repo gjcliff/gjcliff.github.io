@@ -183,3 +183,10 @@ There are multiple possible areas of future work for this project.
 
 Thank you to Professor Argall, Matt, Larisa, Joel, Demiana, Fiona, and Andrew
 for their help and guidance on this project.
+
+Here's a link to the full video of my localization session on 12-10-2024. This
+session was used to make the gifs of localization in this post:
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8XR111Kph50?si=tlk7pDea19UB5TNC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
