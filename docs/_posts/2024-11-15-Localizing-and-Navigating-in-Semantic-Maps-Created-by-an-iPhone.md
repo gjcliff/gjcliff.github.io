@@ -104,11 +104,11 @@ Here's what it looks like when all images are put together in sequence:
 
 ## Semantic Mapping
 After extracting and saving the information from the database, object detection
-is performed using a YOLOv8 model loaded into OpenCV C++'s DNN module at each
-pose in the camera's pose graph. Points from the 3D point cloud are projected
-onto the image plane using the iPhone's intrinsic camera matrix, and points that
-are within the bounding box of an object are assigned to and labeled with the
-object's class.
+is performed using a YOLOv8 model that's run by launching the python
+interpreter from C++ with pybind 11 for each pose in the camera's pose graph.
+Points from the 3D point cloud are projected onto the image plane using the
+iPhone's intrinsic camera matrix, and points that are within the bounding box
+of an object are assigned to and labeled with the object's class.
 
 ![flowchart](/public/Semantic_Mapping/postprocessing_flowchart.png)
 
