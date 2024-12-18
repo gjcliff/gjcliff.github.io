@@ -2,7 +2,7 @@
 layout: post
 title: Teleoperating a Robot Arm with Computer Vision
 date: March 15, 2024
-image: full_final_demo_cut_cropped.gif
+image: video_snippet-1-20241217.gif
 toc: true
 math: true
 featured: true
