@@ -6,7 +6,8 @@
 .post-entry {
   border-bottom: 1px solid var(--border-color);
   margin-bottom: var(--spacer-3);
-  display: flex; /* Use flexbox to create a horizontal layout */
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -123,6 +124,30 @@
   margin-top: -.5rem;
   margin-bottom: var(--spacer);
   color: var(--gray-600);
+}
+
+/* Responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .post-entry {
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center; /* Center the image and content */
+    text-align: center; /* Center-align text for better readability */
+  }
+
+  .post-image {
+    max-width: 100%; /* Make image take full width */
+    margin-right: 0; /* Remove margin on smaller screens */
+  }
+
+  .post-image img {
+    max-width: 100%; /* Ensure image fits its container */
+    max-height: 300px; /* Limit height for readability */
+  }
+
+  .post-content {
+    text-align: center; /* Center-align content */
+    margin-top: 1em; /* Add spacing between image and content */
+  }
 }
 
 .comment-count {
