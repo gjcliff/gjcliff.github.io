@@ -91,7 +91,9 @@ for point in point_cloud:
 ```
 We're solving for the pixel coordinates of the point, u and v.
 
-![camera_matrix](/public/Semantic_Mapping/camera_matrix.jpg)
+<center>
+  <img src="/public/Semantic_Mapping/camera_matrix.jpg" alt="camera matrix" width="600"/>
+</center>
 
 Since the point from the point cloud we're considering is transformed into the
 camera frame, the extrinsic matrix is the identity matrix and the scalar "s" is
@@ -110,7 +112,9 @@ Points from the 3D point cloud are projected onto the image plane using the
 iPhone's intrinsic camera matrix, and points that are within the bounding box
 of an object are assigned to and labeled with the object's class.
 
-![flowchart](/public/Semantic_Mapping/postprocessing_flowchart.png)
+<center>
+  <img src="/public/Semantic_Mapping/postprocessing_flowchart.png" alt="postprocessing_flowchart" width="600"/>
+</center>
 
 Objects are represented by 3D point clouds, and the centroid
 of each point cloud is used to represent the object's position in the map.
@@ -161,7 +165,9 @@ localization. You can learn more and watch a demo of his package
 Further work is needed to refine the navigation system. Here's an example of
 it's state as of 12-05-2024:
 
-![navigation](/public/Semantic_Mapping/nav_combined-20241205.gif)
+<center>
+  <img src="/public/Semantic_Mapping/nav_combined-20241205.gif" alt="nav combined" width="1000"/>
+</center>
 
 ## Future Work
 There are multiple possible areas of future work for this project.
