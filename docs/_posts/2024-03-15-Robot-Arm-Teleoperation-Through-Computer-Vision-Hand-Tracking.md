@@ -3,7 +3,7 @@ layout: post
 title: Teleoperating a Robot Arm with Computer Vision
 date: March 15, 2024
 image: video_snippet-3-20241217.gif
-toc: true
+toc: false
 math: true
 featured: true
 repo: gjcliff/FrankaTeleop
@@ -21,6 +21,13 @@ To see a full length video demonstration, head over to the [Gallery](#gallery) s
 
 [Link to this project's Github](https://github.com/gjcliff/FrankaTeleop)
 ![GitHub Repo stars](https://img.shields.io/github/stars/gjcliff/FrankaTeleop?style=social)
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Implementation](#implementation)
+- [Lessons Learned](#lessons-learned)
+- [Future Work](#future-work)
+- [Gallery](#gallery)
 
 ## Introduction
 The system is composed of three main nodes: handcv, cv_franka_bridge, and franka_teleop.

@@ -3,7 +3,7 @@ layout: post
 title: Localizing and Navigating in Semantic Maps Created by an iPhone
 date: December 10th, 2024
 image: combined_sequence.gif
-toc: true
+toc: false
 math: true
 featured: true
 tags: [cpp, python, ros2, docker, localization, navigation, computer vision, machine learning, slam]

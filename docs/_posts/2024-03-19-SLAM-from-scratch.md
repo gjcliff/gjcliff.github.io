@@ -3,7 +3,7 @@ layout: post
 title: SLAM From Scratch
 date: March 19th, 2024
 image: slam_unknown_good.gif
-toc: true
+toc: false
 math: true
 # featured: true
 tags: [cpp, ros2, slam, navigation, lidar, machine learning, kalman filter]
@@ -15,6 +15,10 @@ odometry, LIDAR, an Extended Kalman Filter (EKF), and machine learning.
 ![slam_gif](/public/SLAM-from-scratch/slam_unknown_good.gif)
 
 ## [Link to this project's Github](https://github.com/gjcliff/EKFSLAM-from-scratch)
+
+## Table of Contents
+* [Implementation](#implementation)
+* [Gallery](#gallery)
 
 ## Implementation
 This project consists of several ROS packages
