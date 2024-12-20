@@ -174,7 +174,7 @@ There are multiple possible areas of future work for this project.
 * **Create Manual Labeling Tool**: A tool that allows users to manually label
   objects in the semantic map would be useful for editing the labels of objects
   detected by the YOLOv8 model, and the addition of custom landmarks. I am actively
-  working on this tool, and it will be complete before 12-20-2024.
+  working on this tool, and it will be complete before 01-01-2025.
 * **Improve Object Detection**: The YOLOv8 model used for object detection is
   simply one of the default models, yolov8m. It would be beneficial to build
   on this model and train it to recognize additional common household objects.
